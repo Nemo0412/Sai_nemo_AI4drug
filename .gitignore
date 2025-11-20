@@ -1,5 +1,10 @@
 # Dataset files (large files, not for git)
 dataset/
+data/*.xlsx
+data/*.csv
+data/*.jsonl
+!data/toxic_data/toxicity_*.jsonl
+!data/toxic_data/toxicity_*.csv
 
 # Python cache
 __pycache__/
@@ -10,9 +15,10 @@ __pycache__/
 
 # Output files (generated during runtime)
 output/
+# Keep data files but ignore generated outputs
+!data/**/*.jsonl
+!data/**/*.csv
 *.json
-*.csv
-*.jsonl
 
 # Model files (too large for git)
 qwen_lora_finetuned/
@@ -21,6 +27,12 @@ qwen_lora_output/
 *.safetensors
 *.pth
 *.ckpt
+# Checkpoint files
+**/checkpoints/**/*.pt
+**/checkpoints/**/optimizer.pt
+**/checkpoints/**/scheduler.pt
+**/checkpoints/**/trainer_state.json
+models/**/checkpoints/
 
 # Virtual environment
 venv/
@@ -41,6 +53,7 @@ Thumbs.db
 
 # Logs
 *.log
+logs/
 
 # Test files
 test_*.json

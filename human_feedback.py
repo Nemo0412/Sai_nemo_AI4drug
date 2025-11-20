@@ -76,7 +76,7 @@ class HumanFeedbackInterface:
     
     def collect_feedback(self, pairs, round_num=1):
         """
-        Collect feedback from human expert
+        Collect feedback from human expert (pairwise comparison - legacy method)
         
         Args:
             pairs: List of molecule pairs
@@ -163,6 +163,69 @@ class HumanFeedbackInterface:
         print(f"{'='*80}\n")
         
         return feedback_records
+    
+    def collect_efficiency_feedback(self, molecule, round_num=1):
+        """
+        Collect true efficiency score from human expert for a molecule
+        
+        Args:
+            molecule: Molecule dictionary with predictions
+            round_num: Current round number
+            
+        Returns:
+            dict: Feedback record with true efficiency score
+        """
+        print(f"\n{'='*80}")
+        print(f"HUMAN FEEDBACK - EFFICIENCY SCORE")
+        print(f"{'='*80}")
+        
+        print(f"\nMolecule Information:")
+        print(f"  SMILES: {molecule.get('smiles', 'N/A')}")
+        print(f"  Predicted Toxicity: {molecule.get('toxicity', {}).get('score', 'N/A')}")
+        print(f"  Predicted Efficiency: {molecule.get('efficiency', {}).get('score', 'N/A')}")
+        print(f"  Reasoning: {molecule.get('reasoning', 'N/A')[:200]}...")
+        print(f"  Confidence: {molecule.get('overall_confidence', 'N/A'):.2f}")
+        
+        print(f"\n{'='*80}")
+        print("The Predictor and Verifier agents could not reach agreement.")
+        print("Please provide the TRUE efficiency score for this molecule.")
+        print(f"{'='*80}\n")
+        
+        # Get human input
+        while True:
+            try:
+                true_efficiency = input("Enter the true efficiency score (1-10): ").strip()
+                true_efficiency = float(true_efficiency)
+                
+                if 1 <= true_efficiency <= 10:
+                    break
+                else:
+                    print("Invalid input. Please enter a score between 1 and 10.")
+            except ValueError:
+                print("Invalid input. Please enter a number.")
+        
+        # Record feedback
+        feedback = {
+            'round': round_num,
+            'timestamp': datetime.now().isoformat(),
+            'molecule': {
+                'smiles': molecule.get('smiles'),
+                'predicted_toxicity': molecule.get('toxicity', {}).get('score'),
+                'predicted_efficiency': molecule.get('efficiency', {}).get('score'),
+                'reasoning': molecule.get('reasoning'),
+                'confidence': molecule.get('overall_confidence')
+            },
+            'true_efficiency': true_efficiency,
+            'feedback_type': 'efficiency_score'
+        }
+        
+        self.feedback_history.append(feedback)
+        self.save_history()
+        
+        print(f"\n✓ Recorded: True efficiency score = {true_efficiency}")
+        print(f"{'='*80}\n")
+        
+        return feedback
     
     def get_feedback_summary(self):
         """Get summary of all feedback collected"""

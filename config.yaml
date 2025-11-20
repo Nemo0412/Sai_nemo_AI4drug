@@ -40,3 +40,9 @@ active_learning:
   update_after_feedback: true  # Update predictions after each feedback round
   use_feedback_for_training: false  # Whether to retrain model with feedback (future feature)
 
+# Multi-agent settings (LipoAgent framework)
+multi_agent:
+  max_negotiation_loops: 2  # Maximum number of negotiation loops between agents
+  consensus_threshold: 0.8  # Threshold for consensus (0-1)
+  low_confidence_threshold: 6.0  # Confidence threshold below which verification is needed (0-10 scale)
+

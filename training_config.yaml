@@ -1,0 +1,62 @@
+# Training Configuration for Conditional Multi-Task Loss
+
+# Model settings
+model:
+  base_model_path: "Qwen/Qwen2-7B-Instruct"
+  lora_path: null  # Will be created during training
+  output_dir: "./qwen_lora_finetuned_multi_task"
+
+# Data settings
+data:
+  train_data_path: "data/toxic_data/toxicity_train_data.jsonl"
+  test_data_path: "data/toxic_data/toxicity_test_data.jsonl"
+  max_length: 512
+
+# Training hyperparameters
+training:
+  num_epochs: 3
+  batch_size: 4
+  per_device_train_batch_size: 1
+  gradient_accumulation_steps: 16
+  learning_rate: 2e-4
+  warmup_steps: 20
+  save_strategy: "epoch"
+  logging_steps: 5
+  save_total_limit: 2
+  max_grad_norm: 0.3
+  gradient_checkpointing: true
+
+# Loss function hyperparameters
+loss:
+  # Alpha weight for efficiency loss
+  alpha: 1.0
+  
+  # Toxicity loss settings
+  toxicity_loss_type: "binary_cross_entropy"  # binary_cross_entropy_with_logits
+  
+  # Efficiency loss settings
+  efficiency_loss_type: "cross_entropy"  # cross_entropy (only for non-toxic samples)
+  efficiency_num_classes: 10  # 1-10 efficiency scores
+  efficiency_eps: 1e-6  # Small epsilon for numerical stability
+
+# LoRA settings
+lora:
+  r: 8  # LoRA rank
+  lora_alpha: 32  # LoRA alpha parameter
+  lora_dropout: 0.1  # Dropout probability
+  target_modules:
+    - "q_proj"
+    - "k_proj"
+    - "v_proj"
+    - "o_proj"
+    - "gate_proj"
+    - "up_proj"
+    - "down_proj"
+
+# Optimization settings
+optimization:
+  optim: "paged_adamw_8bit"  # 8-bit optimizer
+  fp16: false
+  bf16: true  # Use bfloat16
+  load_in_8bit: true  # Use 8-bit quantization
+

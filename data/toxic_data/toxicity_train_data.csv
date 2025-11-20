@@ -1,0 +1,201 @@
+TAID,Name,IUPAC Name,PubChem CID,Canonical SMILES,InChIKey,Toxicity Value
+TOX-19,mannitol,"(2R,3R,4R,5R)-hexane-1,2,3,4,5,6-hexol",6251.0,OC[C@@H](O)[C@@H](O)[C@H](O)[C@H](O)CO,FBPFZTCFMRRESA-KVTDHHQDSA-N,0
+TOX-28,nitroglycerin,"1,3-dinitrooxypropan-2-yl nitrate",4510.0,O=[N+]([O-])OCC(CO[N+](=O)[O-])O[N+](=O)[O-],SNIOPGDIGTZGOP-UHFFFAOYSA-N,1
+TOX-74,,"3,7-dihydropurine-6-thione",667490.0,S=c1nc[nH]c2nc[nH]c12,GLVAUDGFNGKCSF-UHFFFAOYSA-N,0
+TOX-78,hexachlorophene,"3,4,6-trichloro-2-[(2,3,5-trichloro-6-hydroxyphenyl)methyl]phenol",3598.0,Oc1c(Cl)cc(Cl)c(Cl)c1Cc1c(O)c(Cl)cc(Cl)c1Cl,ACGUYXCXAPNIKK-UHFFFAOYSA-N,0
+TOX-83,,"5-fluoro-1H-pyrimidine-2,4-dione",3385.0,O=c1[nH]cc(F)c(=O)[nH]1,GHASVSINZRGABV-UHFFFAOYSA-N,0
+TOX-98,hydrochlorothiazide,"6-chloro-1,1-dioxo-3,4-dihydro-2H-1lambda6,2,4-benzothiadiazine-7-sulfonamide",3639.0,NS(=O)(=O)c1cc2c(cc1Cl)NCNS2(=O)=O,JZUFKLXOESDKRF-UHFFFAOYSA-N,0
+TOX-110,niclosamide,5-chloro-N-(2-chloro-4-nitrophenyl)-2-hydroxybenzamide,4477.0,O=C(Nc1ccc([N+](=O)[O-])cc1Cl)c1cc(Cl)ccc1O,RJMUSRYZPJIFPJ-UHFFFAOYSA-N,0
+TOX-117,fluconazole,"2-(2,4-difluorophenyl)-1,3-bis(1,2,4-triazol-1-yl)propan-2-ol",3365.0,OC(Cn1cncn1)(Cn1cncn1)c1ccc(F)cc1F,RFHAOTPXVQNOHP-UHFFFAOYSA-N,1
+TOX-143,dapsone,4-(4-aminophenyl)sulfonylaniline,2955.0,Nc1ccc(S(=O)(=O)c2ccc(N)cc2)cc1,MQJKPEGWNLWLTK-UHFFFAOYSA-N,1
+TOX-145,hydroquinone,"benzene-1,4-diol",785.0,Oc1ccc(O)cc1,QIGBRXMKCJKVMJ-UHFFFAOYSA-N,1
+TOX-153,,"1-[(Z)-(5-nitrofuran-2-yl)methylideneamino]imidazolidine-2,4-dione",5353830.0,O=C1CN(/N=C/c2ccc([N+](=O)[O-])o2)C(=O)N1,NXFQHRVNIOXGAQ-OQFOIZHKSA-N,1
+TOX-155,,[(Z)-(5-nitrofuran-2-yl)methylideneamino]urea,5353356.0,NC(=O)N/N=C/c1ccc([N+](=O)[O-])o1,IAIWVQXQOWNYOU-BAQGIRSFSA-N,1
+TOX-166,,quinolin-8-ol,1923.0,Oc1cccc2cccnc12,MCJGNVYPOGVAJF-UHFFFAOYSA-N,0
+TOX-189,felbamate,(3-carbamoyloxy-2-phenylpropyl) carbamate,3331.0,NC(=O)OCC(COC(N)=O)c1ccccc1,WKGXYQFOCVYPAC-UHFFFAOYSA-N,1
+TOX-190,benzoate,benzoate,242.0,O=C([O-])c1ccccc1,WPYMKLBDIGXBTP-UHFFFAOYSA-M,0
+TOX-194,triamterene,"6-phenylpteridine-2,4,7-triamine",5546.0,Nc1nc(N)c2nc(-c3ccccc3)c(N)nc2n1,FNYLWPVRPXGIIP-UHFFFAOYSA-N,0
+TOX-197,oxazepam,"7-chloro-3-hydroxy-5-phenyl-1,3-dihydro-1,4-benzodiazepin-2-one",4616.0,O=C1Nc2ccc(Cl)cc2C(c2ccccc2)=NC1O,ADIMAYPTOBDMTL-UHFFFAOYSA-N,0
+TOX-229,praziquantel,"2-(cyclohexanecarbonyl)-3,6,7,11b-tetrahydro-1H-pyrazino[2,1-a]isoquinolin-4-one",4891.0,O=C(C1CCCCC1)N1CC(=O)N2CCc3ccccc3C2C1,FSVJFNAIGNNGKK-UHFFFAOYSA-N,0
+TOX-244,ifosfamide,"N,3-bis(2-chloroethyl)-2-oxo-1,3,2lambda5-oxazaphosphinan-2-amine",3690.0,O=P1(NCCCl)OCCCN1CCCl,HOMGKSMUEGBAAB-UHFFFAOYSA-N,1
+TOX-245,thiotepa,tris(aziridin-1-yl)-sulfanylidene-lambda5-phosphane,5453.0,S=P(N1CC1)(N1CC1)N1CC1,FOCVUCIESVLUNU-UHFFFAOYSA-N,1
+TOX-249,isoniazid,pyridine-4-carbohydrazide,3767.0,NNC(=O)c1ccncc1,QRXWMOHMRWLFEY-UHFFFAOYSA-N,1
+TOX-251,cyclophosphamide,"N,N-bis(2-chloroethyl)-2-oxo-1,3,2lambda5-oxazaphosphinan-2-amine",2907.0,O=P1(N(CCCl)CCCl)NCCCO1,CMSMOCZEIVJLDB-UHFFFAOYSA-N,1
+TOX-252,beta-propiolactone,oxetan-2-one,2365.0,O=C1CCO1,VEZXCJBBBCKRPI-UHFFFAOYSA-N,1
+TOX-254,,"4-amino-1-[(2R,3R,4S,5R)-3,4-dihydroxy-5-(hydroxymethyl)oxolan-2-yl]-1,3,5-triazin-2-one",9444.0,Nc1ncn([C@@H]2O[C@H](CO)[C@@H](O)[C@H]2O)c(=O)n1,NMUSYJAQQFHJEW-KVTDHHQDSA-N,1
+TOX-288,dexamethasone,"(8S,9R,10S,11S,13S,14S,16R,17R)-9-fluoro-11,17-dihydroxy-17-(2-hydroxyacetyl)-10,13,16-trimethyl-6,7,8,11,12,14,15,16-octahydrocyclopenta[a]phenanthren-3-one",5743.0,C[C@@H]1C[C@H]2[C@@H]3CCC4=CC(=O)C=C[C@]4(C)[C@@]3(F)[C@@H](O)C[C@]2(C)[C@@]1(O)C(=O)CO,UREBDLICKHMUKA-CXSFZGCWSA-N,0
+TOX-303,TRIAMCINOLONE ACETONIDE,"(1S,2S,4R,8S,9S,11S,12R,13S)-12-fluoro-11-hydroxy-8-(2-hydroxyacetyl)-6,6,9,13-tetramethyl-5,7-dioxapentacyclo[10.8.0.02,9.04,8.013,18]icosa-14,17-dien-16-one",6436.0,CC1(C)O[C@@H]2C[C@H]3[C@@H]4CCC5=CC(=O)C=C[C@]5(C)[C@@]4(F)[C@@H](O)C[C@]3(C)[C@]2(C(=O)CO)O1,YNDXUCZADRHECN-JNQJZLCISA-N,1
+TOX-309,prednisolone,"(8S,9S,10R,11S,13S,14S,17R)-11,17-dihydroxy-17-(2-hydroxyacetyl)-10,13-dimethyl-7,8,9,11,12,14,15,16-octahydro-6H-cyclopenta[a]phenanthren-3-one",5755.0,C[C@]12C[C@H](O)[C@H]3[C@@H](CCC4=CC(=O)C=C[C@@]43C)[C@@H]1CC[C@]2(O)C(=O)CO,OIGNJSKKLXVSLS-VWUMJDOOSA-N,1
+TOX-315,ethinyl estradiol,"(8R,9S,13S,14S,17R)-17-ethynyl-13-methyl-7,8,9,11,12,14,15,16-octahydro-6H-cyclopenta[a]phenanthrene-3,17-diol",5991.0,C#C[C@]1(O)CC[C@H]2[C@@H]3CCc4cc(O)ccc4[C@H]3CC[C@@]21C,BFPYWIDHMRZLRN-SLHNCBLASA-N,1
+TOX-333,hydrocortisone,"(8S,9S,10R,11S,13S,14S,17R)-11,17-dihydroxy-17-(2-hydroxyacetyl)-10,13-dimethyl-2,6,7,8,9,11,12,14,15,16-decahydro-1H-cyclopenta[a]phenanthren-3-one",5754.0,C[C@]12C[C@H](O)[C@H]3[C@@H](CCC4=CC(=O)CC[C@@]43C)[C@@H]1CC[C@]2(O)C(=O)CO,JYGXADMDTFJGBT-VWUMJDOOSA-N,0
+TOX-454,lactate,2-hydroxypropanoate,91435.0,CC(O)C(=O)[O-],JVTAAEKCZFNVCJ-UHFFFAOYSA-M,0
+TOX-528,procarbazine,4-[(2-methylhydrazinyl)methyl]-N-propan-2-ylbenzamide,4915.0,CNNCc1ccc(C(=O)NC(C)C)cc1,CPTBDICYNRMXFX-UHFFFAOYSA-N,1
+TOX-573,Norethindrone acetate,"[(8R,9S,10R,13S,14S,17R)-17-ethynyl-13-methyl-3-oxo-1,2,6,7,8,9,10,11,12,14,15,16-dodecahydrocyclopenta[a]phenanthren-17-yl] acetate",5832.0,C#C[C@]1(OC(C)=O)CC[C@H]2[C@@H]3CCC4=CC(=O)CC[C@@H]4[C@H]3CC[C@@]21C,IMONTRJLAWHYGT-ZCPXKWAGSA-N,1
+TOX-581,aspirin,2-acetyloxybenzoic acid,2244.0,CC(=O)Oc1ccccc1C(=O)O,BSYNRYMUTXBXSQ-UHFFFAOYSA-N,0
+TOX-593,diethylstilbestrol,4-[(E)-4-(4-hydroxyphenyl)hex-3-en-3-yl]phenol,448537.0,CC/C(=C(/CC)c1ccc(O)cc1)c1ccc(O)cc1,RGLYKWWBQGJZGM-ISLYRVAYSA-N,1
+TOX-603,phenoxymethylpenicillin(1-),"(2S,5R,6R)-3,3-dimethyl-7-oxo-6-[(2-phenoxyacetyl)amino]-4-thia-1-azabicyclo[3.2.0]heptane-2-carboxylate",6426739.0,CC1(C)S[C@@H]2[C@H](NC(=O)COc3ccccc3)C(=O)N2[C@H]1C(=O)[O-],BPLBGHOLXOTWMN-MBNYWOFBSA-M,0
+TOX-607,trimethadione,"3,5,5-trimethyl-1,3-oxazolidine-2,4-dione",5576.0,CN1C(=O)OC(C)(C)C1=O,IRYJRGCIQBGHIV-UHFFFAOYSA-N,0
+TOX-622,DL-alpha-Tocopherol acetate,"[2,5,7,8-tetramethyl-2-(4,8,12-trimethyltridecyl)-3,4-dihydrochromen-6-yl] acetate",2117.0,CC(=O)Oc1c(C)c(C)c2c(c1C)CCC(C)(CCCC(C)CCCC(C)CCCC(C)C)O2,ZAKOWWREFLAJOT-UHFFFAOYSA-N,0
+TOX-630,mitomycin C,"[(4S,6S,7R,8S)-11-amino-7-methoxy-12-methyl-10,13-dioxo-2,5-diazatetracyclo[7.4.0.02,7.04,6]trideca-1(9),11-dien-8-yl]methyl carbamate",5746.0,CO[C@@]12[C@H](COC(N)=O)C3=C(C(=O)C(C)=C(N)C3=O)N1C[C@@H]1N[C@@H]12,NWIBSHFKIJFRCO-WUDYKRTCSA-N,1
+TOX-687,celecoxib,4-[5-(4-methylphenyl)-3-(trifluoromethyl)pyrazol-1-yl]benzenesulfonamide,2662.0,Cc1ccc(-c2cc(C(F)(F)F)nn2-c2ccc(S(N)(=O)=O)cc2)cc1,RZEKVGVHFLEQIL-UHFFFAOYSA-N,0
+TOX-710,omeprazole,"6-methoxy-2-[(4-methoxy-3,5-dimethylpyridin-2-yl)methylsulfinyl]-1H-benzimidazole",4594.0,COc1ccc2nc(S(=O)Cc3ncc(C)c(OC)c3C)[nH]c2c1,SUBDBMMJDZJVOS-UHFFFAOYSA-N,1
+TOX-711,meloxicam,"4-hydroxy-2-methyl-N-(5-methyl-1,3-thiazol-2-yl)-1,1-dioxo-1lambda6,2-benzothiazine-3-carboxamide",54677470.0,Cc1cnc(NC(=O)C2=C(O)c3ccccc3S(=O)(=O)N2C)s1,ZRVUJXDFFKFLMG-UHFFFAOYSA-N,0
+TOX-713,metronidazole,2-(2-methyl-5-nitroimidazol-1-yl)ethanol,4173.0,Cc1ncc([N+](=O)[O-])n1CCO,VAOCPAMSLUNLGC-UHFFFAOYSA-N,1
+TOX-729,erythromycin A(1+),"[(2S,3R,4S,6R)-2-[[(3R,4S,5S,6R,7R,9R,11R,12R,13S,14R)-14-ethyl-7,12,13-trihydroxy-4-[(2R,4R,5S,6S)-5-hydroxy-4-methoxy-4,6-dimethyloxan-2-yl]oxy-3,5,7,9,11,13-hexamethyl-2,10-dioxo-oxacyclotetradec-6-yl]oxy]-3-hydroxy-6-methyloxan-4-yl]-dimethylazanium",44629456.0,CC[C@H]1OC(=O)[C@H](C)[C@@H](O[C@H]2C[C@@](C)(OC)[C@@H](O)[C@H](C)O2)[C@H](C)[C@@H](O[C@@H]2O[C@H](C)C[C@H]([NH+](C)C)[C@H]2O)[C@](C)(O)C[C@@H](C)C(=O)[C@H](C)[C@@H](O)[C@]1(C)O,ULGZDMOVFRHVEP-RWJQBGPGSA-O,0
+TOX-733,IVERMECTIN,"(1R,4S,5'S,6R,6'R,8R,10E,12S,13S,14E,16E,20R,21R,24S)-6'-[(2S)-butan-2-yl]-21,24-dihydroxy-12-[(2R,4S,5S,6S)-5-[(2S,4S,5S,6S)-5-hydroxy-4-methoxy-6-methyloxan-2-yl]oxy-4-methoxy-6-methyloxan-2-yl]oxy-5',11,13,22-tetramethylspiro[3,7,19-trioxatetracyclo[15.6.1.14,8.020,24]pentacosa-10,14,16,22-tetraene-6,2'-oxane]-2-one",6321424.0,CC[C@H](C)[C@H]1O[C@]2(CC[C@@H]1C)C[C@@H]1C[C@@H](C/C=C(\C)[C@@H](O[C@H]3C[C@H](OC)[C@@H](O[C@H]4C[C@H](OC)[C@@H](O)[C@H](C)O4)[C@H](C)O3)[C@@H](C)/C=C/C=C3\CO[C@@H]4[C@H](O)C(C)=C[C@@H](C(=O)O1)[C@]34O)O2,AZSNMRSAGSSBNP-XPNPUAGNSA-N,0
+TOX-736,lovastatin,"[(1S,3R,7S,8S,8aR)-8-[2-[(2R,4R)-4-hydroxy-6-oxooxan-2-yl]ethyl]-3,7-dimethyl-1,2,3,7,8,8a-hexahydronaphthalen-1-yl] (2S)-2-methylbutanoate",53232.0,CC[C@H](C)C(=O)O[C@H]1C[C@@H](C)C=C2C=C[C@H](C)[C@H](CC[C@@H]3C[C@@H](O)CC(=O)O3)[C@H]21,PCZOHLXUXFIOCF-BXMDZJJMSA-N,0
+TOX-737,pilocarpine,"(3S,4R)-3-ethyl-4-[(3-methylimidazol-4-yl)methyl]oxolan-2-one",5910.0,CC[C@@H]1C(=O)OC[C@@H]1Cc1cncn1C,QCHFTSOMWOSFHM-WPRPVWTQSA-N,0
+TOX-803,ethionamide,2-ethylpyridine-4-carbothioamide,2761171.0,CCc1cc(C(N)=S)ccn1,AEOCXXJPGCBFJA-UHFFFAOYSA-N,0
+TOX-824,Valproate,2-propylpentanoate,3549980.0,CCCC(CCC)C(=O)[O-],NIJJYAXOARWZEE-UHFFFAOYSA-M,1
+TOX-837,misoprostol,"methyl 7-[(1R,2R,3R)-3-hydroxy-2-[(E)-4-hydroxy-4-methyloct-1-enyl]-5-oxocyclopentyl]heptanoate",5282381.0,CCCCC(C)(O)C/C=C/[C@H]1[C@H](O)CC(=O)[C@@H]1CCCCCCC(=O)OC,OJLOPKGSLYJEMD-URPKTTJQSA-N,0
+TOX-855,oleate,(Z)-octadec-9-enoate,5460221.0,CCCCCCCC/C=C\CCCCCCCC(=O)[O-],ZQPPMHVWECSIRJ-KTKRTIGZSA-M,0
+TOX-863,retinyl palmitate,"[(2E,4E,6E,8E)-3,7-dimethyl-9-(2,6,6-trimethylcyclohexen-1-yl)nona-2,4,6,8-tetraenyl] hexadecanoate",5280531.0,CCCCCCCCCCCCCCCC(=O)OC/C=C(C)/C=C/C=C(C)/C=C/C1=C(C)CCCC1(C)C,VYGQUTWHTHXGQB-FFHKNEKCSA-N,0
+TOX-877,PIPERONYL BUTOXIDE,"5-[2-(2-butoxyethoxy)ethoxymethyl]-6-propyl-1,3-benzodioxole",5794.0,CCCCOCCOCCOCc1cc2c(cc1CCC)OCO2,FIPWRIJSWJWJAI-UHFFFAOYSA-N,1
+TOX-897,,1-ethenylpyrrolidin-2-one,6917.0,C=CN1CCCC1=O,WHNWPMSKXPGLAX-UHFFFAOYSA-N,1
+TOX-905,clofibrate,ethyl 2-(4-chlorophenoxy)-2-methylpropanoate,2796.0,CCOC(=O)C(C)(C)Oc1ccc(Cl)cc1,KNHUKKLJHYUCFP-UHFFFAOYSA-N,1
+TOX-913,malathion,diethyl 2-dimethoxyphosphinothioylsulfanylbutanedioate,4004.0,CCOC(=O)CC(SP(=S)(OC)OC)C(=O)OCC,JXSJBGJIGXNWCI-UHFFFAOYSA-N,0
+TOX-931,streptozocin,"1-methyl-1-nitroso-3-[(2S,3R,4R,5S,6R)-2,4,5-trihydroxy-6-(hydroxymethyl)oxan-3-yl]urea",29327.0,CN(N=O)C(=O)N[C@H]1[C@@H](O)O[C@H](CO)[C@@H](O)[C@@H]1O,ZSJLQEPLLKMAKR-GKHCUFPYSA-N,1
+TOX-939,methotrexate,"(2S)-2-[[4-[(2,4-diaminopteridin-6-yl)methyl-methylamino]benzoyl]amino]pentanedioic acid",126941.0,CN(Cc1cnc2nc(N)nc(N)c2n1)c1ccc(C(=O)N[C@@H](CCC(=O)O)C(=O)O)cc1,FBOZXECLQNJBKD-ZDUSSCGKSA-N,0
+TOX-946,piroxicam,"4-hydroxy-2-methyl-1,1-dioxo-N-pyridin-2-yl-1lambda6,2-benzothiazine-3-carboxamide",54676228.0,CN1C(C(=O)Nc2ccccn2)=C(O)c2ccccc2S1(=O)=O,QYSPLQLAKJAUJT-UHFFFAOYSA-N,0
+TOX-954,theophylline,"1,3-dimethyl-7H-purine-2,6-dione",2153.0,Cn1c(=O)c2[nH]cnc2n(C)c1=O,ZFXYFBGIUFBOJW-UHFFFAOYSA-N,0
+TOX-957,diazepam,"7-chloro-1-methyl-5-phenyl-3H-1,4-benzodiazepin-2-one",3016.0,CN1C(=O)CN=C(c2ccccc2)c2cc(Cl)ccc21,AAOVKJBEBIDNHE-UHFFFAOYSA-N,0
+TOX-961,methimazole,3-methyl-1H-imidazole-2-thione,1349907.0,Cn1cc[nH]c1=S,PMRYVIKBURPHAH-UHFFFAOYSA-N,1
+TOX-964,caffeine,"1,3,7-trimethylpurine-2,6-dione",2519.0,Cn1c(=O)c2c(ncn2C)n(C)c1=O,RYYVLZVUVIJVGH-UHFFFAOYSA-N,0
+TOX-983,methoxsalen,"9-methoxyfuro[3,2-g]chromen-7-one",4114.0,COc1c2occc2cc2ccc(=O)oc12,QXKHYNVANLEOEG-UHFFFAOYSA-N,1
+TOX-994,chlorotrianisene,"1-[1-chloro-2,2-bis(4-methoxyphenyl)ethenyl]-4-methoxybenzene",11289.0,COc1ccc(C(Cl)=C(c2ccc(OC)cc2)c2ccc(OC)cc2)cc1,BFPSDSIWYFKGBC-UHFFFAOYSA-N,0
+TOX-995,,4-methoxyphenol,9015.0,COc1ccc(O)cc1,NWVVVBRKAWDGAB-UHFFFAOYSA-N,1
+TOX-1015,ETHYNODIOL DIACETATE,"[(3S,8R,9S,10R,13S,14S,17R)-17-acetyloxy-17-ethynyl-13-methyl-2,3,6,7,8,9,10,11,12,14,15,16-dodecahydro-1H-cyclopenta[a]phenanthren-3-yl] acetate",9270.0,C#C[C@]1(OC(C)=O)CC[C@H]2[C@@H]3CCC4=C[C@@H](OC(C)=O)CC[C@@H]4[C@H]3CC[C@@]21C,ONKUMRGIYFNPJW-KIEAKMPYSA-N,0
+TOX-1018,temazepam,"7-chloro-3-hydroxy-1-methyl-5-phenyl-3H-1,4-benzodiazepin-2-one",5391.0,CN1C(=O)C(O)N=C(c2ccccc2)c2cc(Cl)ccc21,SEQDDYPDSLOBDC-UHFFFAOYSA-N,0
+TOX-1024,phenytoin,"5,5-diphenylimidazolidine-2,4-dione",1775.0,O=C1NC(=O)C(c2ccccc2)(c2ccccc2)N1,CXOFVDLJLONNDW-UHFFFAOYSA-N,0
+TOX-1047,beta-carotene,"1,3,3-trimethyl-2-[(1E,3E,5E,7E,9E,11E,13E,15E,17E)-3,7,12,16-tetramethyl-18-(2,6,6-trimethylcyclohexen-1-yl)octadeca-1,3,5,7,9,11,13,15,17-nonaenyl]cyclohexene",5280489.0,CC1=C(/C=C/C(C)=C/C=C/C(C)=C/C=C/C=C(C)/C=C/C=C(C)/C=C/C2=C(C)CCCC2(C)C)C(C)(C)CCC1,OENHQHLEOONYIE-JLTXGRSLSA-N,0
+TOX-1097,acetaminophen,N-(4-hydroxyphenyl)acetamide,1983.0,CC(=O)Nc1ccc(O)cc1,RZVAJINKPMORJF-UHFFFAOYSA-N,1
+TOX-1099,azathioprine,6-(3-methyl-5-nitroimidazol-4-yl)sulfanyl-7H-purine,2265.0,Cn1cnc([N+](=O)[O-])c1Sc1ncnc2nc[nH]c12,LMEKQMALGUDUQG-UHFFFAOYSA-N,0
+TOX-1122,primidone,"5-ethyl-5-phenyl-1,3-diazinane-4,6-dione",4909.0,CCC1(c2ccccc2)C(=O)NCNC1=O,DQMZLTXERSFNPB-UHFFFAOYSA-N,0
+TOX-1140,zidovudine,"1-[(2R,4S,5S)-4-azido-5-(hydroxymethyl)oxolan-2-yl]-5-methylpyrimidine-2,4-dione",35370.0,Cc1cn([C@H]2C[C@H](N=[N+]=[N-])[C@@H](CO)O2)c(=O)[nH]c1=O,HBOMLICNUCNMMY-XLPZGREQSA-N,1
+TOX-1146,EPICHLOROHYDRIN,2-(chloromethyl)oxirane,7835.0,ClCC1CO1,BRLQWZUYTZBJKN-UHFFFAOYSA-N,1
+TOX-1156,pyrimethamine,"5-(4-chlorophenyl)-6-ethylpyrimidine-2,4-diamine",4993.0,CCc1nc(N)nc(N)c1-c1ccc(Cl)cc1,WKSAUQYGYAYLPV-UHFFFAOYSA-N,0
+TOX-1177,propylthiouracil,6-propyl-2-sulfanylidene-1H-pyrimidin-4-one,657298.0,CCCc1cc(=O)[nH]c(=S)[nH]1,KNAHARQHSZJURB-UHFFFAOYSA-N,1
+TOX-1179,Dronabinol,"(6aR,10aR)-6,6,9-trimethyl-3-pentyl-6a,7,8,10a-tetrahydrobenzo[c]chromen-1-ol",16078.0,CCCCCc1cc(O)c2c(c1)OC(C)(C)[C@@H]1CCC(C)=C[C@@H]21,CYQFCXCEBYINGO-IAGOWNOFSA-N,0
+TOX-1193,BENZOYL PEROXIDE,benzoyl benzenecarboperoxoate,7187.0,O=C(OOC(=O)c1ccccc1)c1ccccc1,OMPJBNCRMGITSC-UHFFFAOYSA-N,0
+TOX-1194,estazolam,"8-chloro-6-phenyl-4H-[1,2,4]triazolo[4,3-a][1,4]benzodiazepine",3261.0,Clc1ccc2c(c1)C(c1ccccc1)=NCc1nncn1-2,CDCHDCWJMGXXRH-UHFFFAOYSA-N,0
+TOX-1195,pyrazinamide,pyrazine-2-carboxamide,1046.0,NC(=O)c1cnccn1,IPEHBUMCGVEMRF-UHFFFAOYSA-N,0
+TOX-1199,propranolol,1-naphthalen-1-yloxy-3-(propan-2-ylamino)propan-2-ol,4946.0,CC(C)NCC(O)COc1cccc2ccccc12,AQHHHDLHHXJYJD-UHFFFAOYSA-N,0
+TOX-1253,disulfiram,"diethylcarbamothioylsulfanyl N,N-diethylcarbamodithioate",3117.0,CCN(CC)C(=S)SSC(=S)N(CC)CC,AUZONCFQVSMFAP-UHFFFAOYSA-N,0
+TOX-1255,prazepam,"7-chloro-1-(cyclopropylmethyl)-5-phenyl-3H-1,4-benzodiazepin-2-one",4890.0,O=C1CN=C(c2ccccc2)c2cc(Cl)ccc2N1CC1CC1,MWQCHHACWWAQLJ-UHFFFAOYSA-N,0
+TOX-1269,,[3-(4-chlorophenyl)-3-pyridin-2-ylpropyl]-dimethylazanium,3767528.0,C[NH+](C)CCC(c1ccc(Cl)cc1)c1ccccn1,SOYKEARSMXGVTM-UHFFFAOYSA-O,0
+TOX-1625,emodin,"1,3,8-trihydroxy-6-methylanthracene-9,10-dione",3220.0,Cc1cc(O)c2c(c1)C(=O)c1cc(O)cc(O)c1C2=O,RHMXXJGYXNZAPX-UHFFFAOYSA-N,0
+TOX-1645,danthron,"1,8-dihydroxyanthracene-9,10-dione",2950.0,O=C1c2cccc(O)c2C(=O)c2c(O)cccc21,QBPFLULOKWLNNW-UHFFFAOYSA-N,1
+TOX-1656,,"1-hydroxyanthracene-9,10-dione",8512.0,O=C1c2ccccc2C(=O)c2c(O)cccc21,BTLXPCBPYBNQNR-UHFFFAOYSA-N,1
+TOX-1677,Gallic acid,"3,4,5-trihydroxybenzoic acid",370.0,O=C(O)c1cc(O)c(O)c(O)c1,LNTHITQWFMADLM-UHFFFAOYSA-N,0
+TOX-1681,eugenol,2-methoxy-4-prop-2-enylphenol,3314.0,C=CCc1ccc(O)c(OC)c1,RRAFCDWBNXTKKO-UHFFFAOYSA-N,0
+TOX-1685,MENTHOL,5-methyl-2-propan-2-ylcyclohexan-1-ol,1254.0,CC1CCC(C(C)C)C(O)C1,NOOLISFMXDJSKH-UHFFFAOYSA-N,0
+TOX-1698,,chromen-2-one,323.0,O=c1ccc2ccccc2o1,ZYGHJZDHTFUPRJ-UHFFFAOYSA-N,1
+TOX-1705,naphthalene,naphthalene,931.0,c1ccc2ccccc2c1,UFWIBTONFRDIAS-UHFFFAOYSA-N,1
+TOX-1714,,N-(9H-fluoren-2-yl)acetamide,5897.0,CC(=O)Nc1ccc2c(c1)Cc1ccccc1-2,CZIHNRWJTSTCEX-UHFFFAOYSA-N,1
+TOX-1718,,"3-methyl-1,2-dihydrobenzo[j]aceanthrylene",1674.0,Cc1ccc2cc3c(ccc4ccccc43)c3c2c1CC3,PPQNQXQZIWHJRB-UHFFFAOYSA-N,1
+TOX-1723,acetohexamide,1-(4-acetylphenyl)sulfonyl-3-cyclohexylurea,1989.0,CC(=O)c1ccc(S(=O)(=O)NC(=O)NC2CCCCC2)cc1,VGZSUPCWNCWDAN-UHFFFAOYSA-N,0
+TOX-1731,AFBI,"11-methoxy-6,8,19-trioxapentacyclo[10.7.0.02,9.03,7.013,17]nonadeca-1,4,9,11,13(17)-pentaene-16,18-dione",14403.0,COc1cc2c(c3oc(=O)c4c(c13)CCC4=O)C1C=COC1O2,OQIQSTLJSLGHID-UHFFFAOYSA-N,1
+TOX-1744,,6-aminohexanoic acid,564.0,NCCCCCC(=O)O,SLXKOJJOQWFEFD-UHFFFAOYSA-N,0
+TOX-1763,astemizole,1-[(4-fluorophenyl)methyl]-N-[1-[2-(4-methoxyphenyl)ethyl]piperidin-4-yl]benzimidazol-2-amine,2247.0,COc1ccc(CCN2CCC(Nc3nc4ccccc4n3Cc3ccc(F)cc3)CC2)cc1,GXDALQBWZGODGZ-UHFFFAOYSA-N,0
+TOX-1765,atrazine,"6-chloro-4-N-ethyl-2-N-propan-2-yl-1,3,5-triazine-2,4-diamine",2256.0,CCNc1nc(Cl)nc(NC(C)C)n1,MXWJVTOOROXGIU-UHFFFAOYSA-N,1
+TOX-1778,,"2-[[4-[4-[(1-anilino-1,3-dioxobutan-2-yl)diazenyl]-3-chlorophenyl]-2-chlorophenyl]diazenyl]-3-oxo-N-phenylbutanamide",186342.0,CC(=O)C(N=Nc1ccc(-c2ccc(N=NC(C(C)=O)C(=O)Nc3ccccc3)c(Cl)c2)cc1Cl)C(=O)Nc1ccccc1,GNCOVOVCHIHPHP-UHFFFAOYSA-N,0
+TOX-1800,,"2,6-ditert-butyl-4-methylphenol",31404.0,Cc1cc(C(C)(C)C)c(O)c(C(C)(C)C)c1,NLZUEZXRPGMBCV-UHFFFAOYSA-N,0
+TOX-1804,Candesartan cilexetil,1-cyclohexyloxycarbonyloxyethyl 2-ethoxy-3-[[4-[2-(2H-tetrazol-5-yl)phenyl]phenyl]methyl]benzimidazole-4-carboxylate,2540.0,CCOc1nc2cccc(C(=O)OC(C)OC(=O)OC3CCCCC3)c2n1Cc1ccc(-c2ccccc2-c2nn[nH]n2)cc1,GHOSNRCGJFBJIB-UHFFFAOYSA-N,0
+TOX-1808,azepan-2-one,azepan-2-one,7768.0,O=C1CCCCCN1,JBKVHLHDHHXQEQ-UHFFFAOYSA-N,0
+TOX-1809,Captafol,"2-(1,1,2,2-tetrachloroethylsulfanyl)-3a,4,7,7a-tetrahydroisoindole-1,3-dione",17038.0,O=C1C2CC=CCC2C(=O)N1SC(Cl)(Cl)C(Cl)Cl,JHRWWRDRBPCWTF-UHFFFAOYSA-N,1
+TOX-1836,chlorambucil,4-[4-[bis(2-chloroethyl)amino]phenyl]butanoic acid,2708.0,O=C(O)CCCc1ccc(N(CCCl)CCCl)cc1,JCKYGMPEJWAADB-UHFFFAOYSA-N,1
+TOX-1839,chlordecone,"1,2,3,4,6,7,8,9,10,10-decachloropentacyclo[5.3.0.02,6.03,9.04,8]decan-5-one",299.0,O=C1C2(Cl)C3(Cl)C4(Cl)C(Cl)(Cl)C5(Cl)C3(Cl)C1(Cl)C5(Cl)C24Cl,LHHGDZSESBACKH-UHFFFAOYSA-N,1
+TOX-1843,BENZYL CHLORIDE,chloromethylbenzene,7503.0,ClCc1ccccc1,KCXMKQUNVWSEMD-UHFFFAOYSA-N,0
+TOX-1845,chlorpropamide,1-(4-chlorophenyl)sulfonyl-3-propylurea,2727.0,CCCNC(=O)NS(=O)(=O)c1ccc(Cl)cc1,RKWGIWYCVPQPMF-UHFFFAOYSA-N,0
+TOX-1878,,"1,4-dichlorobenzene",4685.0,Clc1ccc(Cl)cc1,OCJBOOLMMGQPQU-UHFFFAOYSA-N,1
+TOX-1889,,1-phenylpropan-2-amine,3007.0,CC(N)Cc1ccccc1,KWTSXDURSIMDCE-UHFFFAOYSA-N,0
+TOX-1892,EFLORNITHINE,"2,5-diamino-2-(difluoromethyl)pentanoic acid",3009.0,NCCCC(N)(C(=O)O)C(F)F,VLCYCQAOQCDTCN-UHFFFAOYSA-N,0
+TOX-1907,,"1,4-dioxane",31275.0,C1COCCO1,RYHBNJHYFVUHQT-UHFFFAOYSA-N,1
+TOX-2002,heptachlor,"1,5,7,8,9,10,10-heptachlorotricyclo[5.2.1.02,6]deca-3,8-diene",3589.0,ClC1=C(Cl)C2(Cl)C3C(Cl)C=CC3C1(Cl)C2(Cl)Cl,FRCCEHPWNOQAEU-UHFFFAOYSA-N,0
+TOX-2003,HEXACHLOROBENZENE,"1,2,3,4,5,6-hexachlorobenzene",8370.0,Clc1c(Cl)c(Cl)c(Cl)c(Cl)c1Cl,CKAPSXZOOQJIBF-UHFFFAOYSA-N,1
+TOX-2008,ibuprofen,2-[4-(2-methylpropyl)phenyl]propanoic acid,3672.0,CC(C)Cc1ccc(C(C)C(=O)O)cc1,HEFNNWSXXWATRW-UHFFFAOYSA-N,0
+TOX-2039,DL-DOPA,"2-amino-3-(3,4-dihydroxyphenyl)propanoic acid",836.0,NC(Cc1ccc(O)c(O)c1)C(=O)O,WTDRDQBEARUVNC-UHFFFAOYSA-N,0
+TOX-2044,DL-METHIONINE,2-amino-4-methylsulfanylbutanoic acid,876.0,CSCCC(N)C(=O)O,FFEARJCKVFRZRR-UHFFFAOYSA-N,0
+TOX-2046,lonidamine,"1-[(2,4-dichlorophenyl)methyl]indazole-3-carboxylic acid",39562.0,O=C(O)c1nn(Cc2ccc(Cl)cc2Cl)c2ccccc12,WDRYRZXSPDWGEB-UHFFFAOYSA-N,0
+TOX-2063,methapyrilene,"N,N-dimethyl-N'-pyridin-2-yl-N'-(thiophen-2-ylmethyl)ethane-1,2-diamine",4098.0,CN(C)CCN(Cc1cccs1)c1ccccn1,HNJJXZKZRAWDPF-UHFFFAOYSA-N,1
+TOX-2069,methoxychlor,"1-methoxy-4-[2,2,2-trichloro-1-(4-methoxyphenyl)ethyl]benzene",4115.0,COc1ccc(C(c2ccc(OC)cc2)C(Cl)(Cl)Cl)cc1,IAKOZHOLGAGEJT-UHFFFAOYSA-N,0
+TOX-2097,,"N,N-dimethylacetamide",31374.0,CC(=O)N(C)C,FXHOOIRPVKKKFG-UHFFFAOYSA-N,0
+TOX-2112,mechlorethamine,2-chloro-N-(2-chloroethyl)-N-methylethanamine,4033.0,CN(CCCl)CCCl,HAWPXGHAZFHHAD-UHFFFAOYSA-N,1
+TOX-2113,,"N,N-diethylnitrous amide",5921.0,CCN(CC)N=O,WBNQDOYYEUMPFS-UHFFFAOYSA-N,1
+TOX-2121,,"1,2-dichlorobenzene",7239.0,Clc1ccccc1Cl,RFFLAFLAYFXFSW-UHFFFAOYSA-N,0
+TOX-2130,oxprenolol,1-(propan-2-ylamino)-3-(2-prop-2-enoxyphenoxy)propan-2-ol,4631.0,C=CCOc1ccccc1OCC(O)CNC(C)C,CEMAWMOMDPGJMB-UHFFFAOYSA-N,0
+TOX-2134,,4-[(4-aminophenyl)methyl]aniline,7577.0,Nc1ccc(Cc2ccc(N)cc2)cc1,YBRVSVVVWCFQMG-UHFFFAOYSA-N,1
+TOX-2142,Methyl yellow,"N,N-dimethyl-4-phenyldiazenylaniline",6053.0,CN(C)c1ccc(N=Nc2ccccc2)cc1,JCYPECIVGRXBMO-UHFFFAOYSA-N,1
+TOX-2154,phenacetin,N-(4-ethoxyphenyl)acetamide,4754.0,CCOc1ccc(NC(C)=O)cc1,CPJSUEIXXCENMM-UHFFFAOYSA-N,1
+TOX-2156,phenol,phenol,996.0,Oc1ccccc1,ISWSIDIOOBJBQZ-UHFFFAOYSA-N,0
+TOX-2158,phenoxybenzamine,N-benzyl-N-(2-chloroethyl)-1-phenoxypropan-2-amine,4768.0,CC(COc1ccccc1)N(CCCl)Cc1ccccc1,QZVCTJOXCFMACW-UHFFFAOYSA-N,1
+TOX-2190,,pyridine,1049.0,c1ccncc1,JUJWROOIHBZHMG-UHFFFAOYSA-N,1
+TOX-2200,resorcinol,"benzene-1,3-diol",5054.0,Oc1cccc(O)c1,GHMLBKRAJCXXBS-UHFFFAOYSA-N,0
+TOX-2226,SERATRODAST,"7-phenyl-7-(2,4,5-trimethyl-3,6-dioxocyclohexa-1,4-dien-1-yl)heptanoic acid",2449.0,CC1=C(C)C(=O)C(C(CCCCCC(=O)O)c2ccccc2)=C(C)C1=O,ZBVKEHDGYSLCCC-UHFFFAOYSA-N,0
+TOX-2234,MALEIC HYDRAZIDE,"1,2-dihydropyridazine-3,6-dione",21954.0,O=c1ccc(=O)[nH][nH]1,BGRDGMRNKXEXQD-UHFFFAOYSA-N,0
+TOX-2235,STYRENE,styrene,7501.0,C=Cc1ccccc1,PPBRXRYQALVLMV-UHFFFAOYSA-N,1
+TOX-2242,sulfisoxazole,"4-amino-N-(3,4-dimethyl-1,2-oxazol-5-yl)benzenesulfonamide",5344.0,Cc1noc(NS(=O)(=O)c2ccc(N)cc2)c1C,NHUHCSRWZMLRLA-UHFFFAOYSA-N,0
+TOX-2273,tolazamide,1-(azepan-1-yl)-3-(4-methylphenyl)sulfonylurea,5503.0,Cc1ccc(S(=O)(=O)NC(=O)NN2CCCCCC2)cc1,OUDSBRTVNLOZBN-UHFFFAOYSA-N,0
+TOX-2274,tolbutamide,1-butyl-3-(4-methylphenyl)sulfonylurea,5505.0,CCCCNC(=O)NS(=O)(=O)c1ccc(C)cc1,JLRGJRBPOGGCBT-UHFFFAOYSA-N,0
+TOX-2300,Pirinixic acid,"2-[4-chloro-6-(2,3-dimethylanilino)pyrimidin-2-yl]sulfanylacetic acid",5694.0,Cc1cccc(Nc2cc(Cl)nc(SCC(=O)O)n2)c1C,SZRPDCCEHVWOJX-UHFFFAOYSA-N,1
+TOX-2307,dopamine,"4-(2-aminoethyl)benzene-1,2-diol",681.0,NCCc1ccc(O)c(O)c1,VYFYYTLLBUKUHU-UHFFFAOYSA-N,0
+TOX-2313,PERHEXILINE,"2-(2,2-dicyclohexylethyl)piperidine",4746.0,C1CCC(C(CC2CCCCN2)C2CCCCC2)CC1,CYXKNKQEMFBLER-UHFFFAOYSA-N,0
+TOX-2324,etodolac,"2-(1,8-diethyl-4,9-dihydro-3H-pyrano[3,4-b]indol-1-yl)acetic acid",3308.0,CCc1cccc2c3c([nH]c12)C(CC)(CC(=O)O)OCC3,NNYBQONXHNTVIJ-UHFFFAOYSA-N,0
+TOX-2325,pemoline,"2-amino-5-phenyl-1,3-oxazol-4-one",4723.0,NC1=NC(=O)C(c2ccccc2)O1,NRNCYVBFPDDJNE-UHFFFAOYSA-N,0
+TOX-2338,doxylamine,"N,N-dimethyl-2-(1-phenyl-1-pyridin-2-ylethoxy)ethanamine",3162.0,CN(C)CCOC(C)(c1ccccc1)c1ccccn1,HCFDWZZGGLSKEP-UHFFFAOYSA-N,1
+TOX-2343,Ciprofibrate,"2-[4-(2,2-dichlorocyclopropyl)phenoxy]-2-methylpropanoic acid",2763.0,CC(C)(Oc1ccc(C2CC2(Cl)Cl)cc1)C(=O)O,KPSRODZRAIWAKH-UHFFFAOYSA-N,1
+TOX-2353,promethazine,"N,N-dimethyl-1-phenothiazin-10-ylpropan-2-amine",4927.0,CC(CN1c2ccccc2Sc2ccccc21)N(C)C,PWWVAXIEGOYWEE-UHFFFAOYSA-N,0
+TOX-2398,,"2,3,7,8-tetrachlorodibenzo-p-dioxin",15625.0,Clc1cc2c(cc1Cl)Oc1cc(Cl)c(Cl)cc1O2,HGUFODBRKLSHSI-UHFFFAOYSA-N,1
+TOX-2399,,2-nitropropane,398.0,CC(C)[N+](=O)[O-],FGLBSLMDCBOPQK-UHFFFAOYSA-N,0
+TOX-2419,alclofenac,2-(3-chloro-4-prop-2-enoxyphenyl)acetic acid,30951.0,C=CCOc1ccc(CC(=O)O)cc1Cl,ARHWPKZXBHOEEE-UHFFFAOYSA-N,0
+TOX-2423,allantoin,"(2,5-dioxoimidazolidin-4-yl)urea",204.0,NC(=O)NC1NC(=O)NC1=O,POJWUDADGALRAB-UHFFFAOYSA-N,0
+TOX-2426,ALLYL ALCOHOL,prop-2-en-1-ol,7858.0,C=CCO,XXROGKLTLUQVRX-UHFFFAOYSA-N,0
+TOX-2443,antipyrine,"1,5-dimethyl-2-phenylpyrazol-3-one",2206.0,Cc1cc(=O)n(-c2ccccc2)n1C,VEQOALNAAJBPNY-UHFFFAOYSA-N,1
+TOX-2469,BENZIDINE,4-(4-aminophenyl)aniline,7111.0,Nc1ccc(-c2ccc(N)cc2)cc1,HFACYLZERDEVSX-UHFFFAOYSA-N,1
+TOX-2504,busulfan,4-methylsulfonyloxybutyl methanesulfonate,2478.0,CS(=O)(=O)OCCCCOS(C)(=O)=O,COVZYZSDYWQREU-UHFFFAOYSA-N,0
+TOX-2556,Clobuzarit,2-[[4-(4-chlorophenyl)phenyl]methoxy]-2-methylpropanoic acid,71697.0,CC(C)(OCc1ccc(-c2ccc(Cl)cc2)cc1)C(=O)O,UGOFYAXVVVXMQT-UHFFFAOYSA-N,0
+TOX-2597,Diethyltoluamide,"N,N-diethyl-3-methylbenzamide",4284.0,CCN(CC)C(=O)c1cccc(C)c1,MMOXZBCLCQITDF-UHFFFAOYSA-N,0
+TOX-2608,Biphenyl,"1,1'-biphenyl",7095.0,c1ccc(-c2ccccc2)cc1,ZUOUZKKEUPVFJK-UHFFFAOYSA-N,1
+TOX-2688,furosemide,4-chloro-2-(furan-2-ylmethylamino)-5-sulfamoylbenzoic acid,3440.0,NS(=O)(=O)c1cc(C(=O)O)c(NCc2ccco2)cc1Cl,ZZUFCTLCJUWOSV-UHFFFAOYSA-N,0
+TOX-2698,gemfibrozil,"5-(2,5-dimethylphenoxy)-2,2-dimethylpentanoic acid",3463.0,Cc1ccc(C)c(OCCCC(C)(C)C(=O)O)c1,HEMJJKBWTPKOJG-UHFFFAOYSA-N,1
+TOX-2725,,"1,1,2,3,4,4-hexachlorobuta-1,3-diene",6901.0,ClC(Cl)=C(Cl)C(Cl)=C(Cl)Cl,RWNKSTSCBHKHTB-UHFFFAOYSA-N,1
+TOX-2779,DL-ETHIONINE,2-amino-4-ethylsulfanylbutanoic acid,6205.0,CCSCCC(N)C(=O)O,GGLZPLKKBSSKCX-UHFFFAOYSA-N,1
+TOX-2800,Lornoxicam,"6-chloro-4-hydroxy-2-methyl-1,1-dioxo-N-pyridin-2-ylthieno[2,3-e]thiazine-3-carboxamide",54690031.0,CN1C(C(=O)Nc2ccccn2)=C(O)c2sc(Cl)cc2S1(=O)=O,WLHQHAUOOXYABV-UHFFFAOYSA-N,0
+TOX-2816,manidipine,"5-O-[2-(4-benzhydrylpiperazin-1-yl)ethyl] 3-O-methyl 2,6-dimethyl-4-(3-nitrophenyl)-1,4-dihydropyridine-3,5-dicarboxylate",4008.0,COC(=O)C1=C(C)NC(C)=C(C(=O)OCCN2CCN(C(c3ccccc3)c3ccccc3)CC2)C1c1cccc([N+](=O)[O-])c1,ANEBWFXPVPTEET-UHFFFAOYSA-N,0
+TOX-2828,pyrilamine,"N'-[(4-methoxyphenyl)methyl]-N,N-dimethyl-N'-pyridin-2-ylethane-1,2-diamine",4992.0,COc1ccc(CN(CCN(C)C)c2ccccn2)cc1,YECBIJXISLIIDS-UHFFFAOYSA-N,1
+TOX-2835,methenamine,"1,3,5,7-tetrazatricyclo[3.3.1.13,7]decane",4101.0,C1N2CN3CN1CN(C2)C3,VKYKSIONXSXAKP-UHFFFAOYSA-N,0
+TOX-2839,tert-Butyl methyl ether,2-methoxy-2-methylpropane,15413.0,COC(C)(C)C,BZLVMXJERCGZMT-UHFFFAOYSA-N,1
+TOX-2867,nalidixic acid,"1-ethyl-7-methyl-4-oxo-1,8-naphthyridine-3-carboxylic acid",4421.0,CCn1cc(C(=O)O)c(=O)c2ccc(C)nc21,MHWLWQUZZRMNGJ-UHFFFAOYSA-N,1
+TOX-2928,PHENFORMIN,1-(diaminomethylidene)-2-(2-phenylethyl)guanidine,8249.0,NC(N)=NC(N)=NCCc1ccccc1,ICFJFFQQTFMIBG-UHFFFAOYSA-N,0
+TOX-2930,phenobarbital,"5-ethyl-5-phenyl-1,3-diazinane-2,4,6-trione",4763.0,CCC1(c2ccccc2)C(=O)NC(=O)NC1=O,DDBREPKUVSBGFI-UHFFFAOYSA-N,0
+TOX-2931,phenolphthalein,"3,3-bis(4-hydroxyphenyl)-2-benzofuran-1-one",4764.0,O=C1OC(c2ccc(O)cc2)(c2ccc(O)cc2)c2ccccc21,KJFMBFZCATUALV-UHFFFAOYSA-N,1
+TOX-2952,practolol,N-[4-[2-hydroxy-3-(propan-2-ylamino)propoxy]phenyl]acetamide,4883.0,CC(=O)Nc1ccc(OCC(O)CNC(C)C)cc1,DURULFYMVIFBIR-UHFFFAOYSA-N,0
+TOX-2956,Pranlukast,N-[4-oxo-2-(2H-tetrazol-5-yl)chromen-8-yl]-4-(4-phenylbutoxy)benzamide,4887.0,O=C(Nc1cccc2c(=O)cc(-c3nn[nH]n3)oc12)c1ccc(OCCCCc2ccccc2)cc1,NBQKINXMPLXUET-UHFFFAOYSA-N,0
+TOX-2966,probenecid,4-(dipropylsulfamoyl)benzoic acid,4911.0,CCCN(CCC)S(=O)(=O)c1ccc(C(=O)O)cc1,DBABZHXKTCFAPX-UHFFFAOYSA-N,0
+TOX-2969,,"1,2-dichloropropane",6564.0,CC(Cl)CCl,KNKRKFALVUDBJE-UHFFFAOYSA-N,0
+TOX-3053,suxibuzone,"4-[(4-butyl-3,5-dioxo-1,2-diphenylpyrazolidin-4-yl)methoxy]-4-oxobutanoic acid",5362.0,CCCCC1(COC(=O)CCC(=O)O)C(=O)N(c2ccccc2)N(c2ccccc2)C1=O,ONWXNHPOAGOMTG-UHFFFAOYSA-N,0
+TOX-3075,thiabendazole,"4-(1H-benzimidazol-2-yl)-1,3-thiazole",5430.0,c1ccc2[nH]c(-c3cscn3)nc2c1,WJCNZQLZVWNLKY-UHFFFAOYSA-N,0
+TOX-3113,urethane,ethyl carbamate,5641.0,CCOC(N)=O,JOYRKODLDBILNP-UHFFFAOYSA-N,1
+TOX-3146,toluene,toluene,1140.0,Cc1ccccc1,YXFVVABEGXRONW-UHFFFAOYSA-N,1
+TOX-3147,METHYL METHACRYLATE,methyl 2-methylprop-2-enoate,6658.0,C=C(C)C(=O)OC,VVQNEPGJFQJSBK-UHFFFAOYSA-N,0
+TOX-3148,glutaraldehyde,pentanedial,3485.0,O=CCCCC=O,SXRSQZLOMIGNAQ-UHFFFAOYSA-N,0
+TOX-3156,thiram,"dimethylcarbamothioylsulfanyl N,N-dimethylcarbamodithioate",5455.0,CN(C)C(=S)SSC(=S)N(C)C,KUAZQDVKQLNFPE-UHFFFAOYSA-N,0
+TOX-3168,ascorbic acid,"(2R)-2-[(1S)-1,2-dihydroxyethyl]-3,4-dihydroxy-2H-furan-5-one",54670067.0,O=C1O[C@H]([C@@H](O)CO)C(O)=C1O,CIWBSHSKHKDKBQ-JLAZNSOCSA-N,0
+TOX-3215,L-Ethionine,(2S)-2-amino-4-ethylsulfanylbutanoic acid,25674.0,CCSCC[C@H](N)C(=O)O,GGLZPLKKBSSKCX-YFKPBYRVSA-N,1
+TOX-3217,tamoxifen,"2-[4-[(Z)-1,2-diphenylbut-1-enyl]phenoxy]-N,N-dimethylethanamine",2733526.0,CC/C(=C(\c1ccccc1)c1ccc(OCCN(C)C)cc1)c1ccccc1,NKANXQFJJICGDU-QPLCGJKRSA-N,1
+TOX-3280,methylphenidate,methyl 2-phenyl-2-piperidin-2-ylacetate,4158.0,COC(=O)C(c1ccccc1)C1CCCCN1,DUGOZIWVEXMGBE-UHFFFAOYSA-N,0
+TOX-3295,phenylbutazone,"4-butyl-1,2-diphenylpyrazolidine-3,5-dione",4781.0,CCCCC1C(=O)N(c2ccccc2)N(c2ccccc2)C1=O,VYMDGNCVAMGZFE-UHFFFAOYSA-N,1
+TOX-3309,indomethacin,2-[1-(4-chlorobenzoyl)-5-methoxy-2-methylindol-3-yl]acetic acid,3715.0,COc1ccc2c(c1)c(CC(=O)O)c(C)n2C(=O)c1ccc(Cl)cc1,CGIGDMFJXJATDK-UHFFFAOYSA-N,1
+TOX-3317,quinapril,"(3S)-2-[(2S)-2-[[(2S)-1-ethoxy-1-oxo-4-phenylbutan-2-yl]amino]propanoyl]-3,4-dihydro-1H-isoquinoline-3-carboxylic acid",54892.0,CCOC(=O)[C@H](CCc1ccccc1)N[C@@H](C)C(=O)N1Cc2ccccc2C[C@H]1C(=O)O,JSDRRTOADPPCHY-HSQYWUDLSA-N,0
+TOX-3318,Retinoic acid,"(2E,4E,6E,8E)-3,7-dimethyl-9-(2,6,6-trimethylcyclohexen-1-yl)nona-2,4,6,8-tetraenoic acid",444795.0,CC1=C(/C=C/C(C)=C/C=C/C(C)=C/C(=O)O)C(C)(C)CCC1,SHGAZHPCJJPHSC-YCNIQYBTSA-N,0
+TOX-3342,methyldopa,"(2S)-2-amino-3-(3,4-dihydroxyphenyl)-2-methylpropanoic acid",38853.0,C[C@](N)(Cc1ccc(O)c(O)c1)C(=O)O,CJCSPKMFHVPWAR-JTQLQIEISA-N,0
+TOX-3362,Dilevalol,2-hydroxy-5-[(1R)-1-hydroxy-2-[[(2R)-4-phenylbutan-2-yl]amino]ethyl]benzamide,134044.0,C[C@H](CCc1ccccc1)NC[C@H](O)c1ccc(O)c(C(N)=O)c1,SGUAFYQXFOLMHL-ACJLOTCBSA-N,0
+TOX-3368,,(2R)-2-acetamido-3-sulfanylpropanoic acid,12035.0,CC(=O)N[C@@H](CS)C(=O)O,PWKSKIMOESPYIA-BYPYZUCNSA-N,0
+TOX-3393,doxorubicin,"(7S,9S)-7-[(2R,4S,5S,6S)-4-amino-5-hydroxy-6-methyloxan-2-yl]oxy-6,9,11-trihydroxy-9-(2-hydroxyacetyl)-4-methoxy-8,10-dihydro-7H-tetracene-5,12-dione",31703.0,COc1cccc2c1C(=O)c1c(O)c3c(c(O)c1C2=O)C[C@@](O)(C(=O)CO)C[C@@H]3O[C@H]1C[C@H](N)[C@H](O)[C@H](C)O1,AOJJSUZBOXZQNB-TZSSRYMLSA-N,1
+TOX-3409,sertraline,"(1S,4S)-4-(3,4-dichlorophenyl)-N-methyl-1,2,3,4-tetrahydronaphthalen-1-amine",68617.0,CN[C@H]1CC[C@@H](c2ccc(Cl)c(Cl)c2)c2ccccc21,VGKDLMBJGBXTGI-SJCJKPOMSA-N,0
+TOX-3429,Salbutamol,4-[2-(tert-butylamino)-1-hydroxyethyl]-2-(hydroxymethyl)phenol,2083.0,CC(C)(C)NCC(O)c1ccc(O)c(CO)c1,NDAUXUAQIAJITI-UHFFFAOYSA-N,1
+TOX-3437,diphenhydramine,"2-benzhydryloxy-N,N-dimethylethanamine",3100.0,CN(C)CCOC(c1ccccc1)c1ccccc1,ZZVUWRFHKOJYTH-UHFFFAOYSA-N,0
+TOX-3489,hexylresorcinol,"4-hexylbenzene-1,3-diol",3610.0,CCCCCCc1ccc(O)cc1O,WFJIVOKAWHGMBH-UHFFFAOYSA-N,0
+TOX-3543,,"3,4-dihydroxybenzoic acid",72.0,O=C(O)c1ccc(O)c(O)c1,YQUVCSBJEUQKSH-UHFFFAOYSA-N,0
+TOX-3602,kaempferol,"3,5,7-trihydroxy-2-(4-hydroxyphenyl)chromen-4-one",5280863.0,O=c1c(O)c(-c2ccc(O)cc2)oc2cc(O)cc(O)c12,IYRMWMYZSQPJKC-UHFFFAOYSA-N,0
+TOX-3617,ellagic acid,"6,7,13,14-tetrahydroxy-2,9-dioxatetracyclo[6.6.2.04,16.011,15]hexadeca-1(15),4,6,8(16),11,13-hexaene-3,10-dione",5281855.0,O=c1oc2c(O)c(O)cc3c(=O)oc4c(O)c(O)cc1c4c23,AFSDNFLWKVMVRB-UHFFFAOYSA-N,0
