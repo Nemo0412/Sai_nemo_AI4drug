@@ -10,7 +10,9 @@ python multi_task_training.py
 ```
 - **Config**: `training_config.yaml`
 - **Output**: `./qwen_lora_finetuned_multi_task/`
-- **Data**: `data/toxic_data/toxicity_train_data.jsonl` (200 samples)
+- **Data**: 
+  - Toxic data: `data/toxic_data/toxicity_train_data.jsonl` (toxicity labels: 0 or 1)
+  - Efficiency data: `data/train_data.jsonl` (efficiency scores: 1-10)
 
 ### 2. Multi-Agent Prediction Loop
 ```bash
@@ -24,12 +26,15 @@ python multi_agent_pipeline.py
 
 ```bash
 # Step 1: Prepare data (if needed)
-python process_toxicity_data.py
+python process_toxicity_data.py  # Process toxic data
 
-# Step 2: Train model
+# Step 2: Train model (uses both toxic and efficiency data)
 python multi_task_training.py
 
-# Step 3: Run multi-agent prediction
+# Step 3: Evaluate model (tests both toxicity and efficiency)
+python evaluate_multi_task.py
+
+# Step 4: Run multi-agent prediction
 python multi_agent_pipeline.py
 ```
 
@@ -42,13 +47,20 @@ python multi_agent_pipeline.py
 
 **Training:**
 - **Conditional Multi-Task Loss**: `loss = loss_tox + alpha * loss_eff`
-  - Toxicity loss: Binary cross-entropy (all samples)
-  - Efficiency loss: Cross-entropy (only non-toxic samples)
+  - **Toxicity loss**: Binary cross-entropy (all samples from toxic data, labels: 0 or 1)
+  - **Efficiency loss**: Cross-entropy (only non-toxic samples from efficiency data, labels: 1-10 discrete values)
+  - Toxic data is used for toxicity prediction training
+  - Efficiency data is used for efficiency prediction training
+  - Efficiency loss is only computed for non-toxic samples (conditional)
 
 ## Configuration
 
 ### Training Config (`training_config.yaml`)
 ```yaml
+data:
+  toxic_train_data_path: "data/toxic_data/toxicity_train_data.jsonl"  # Toxicity labels (0/1)
+  efficiency_train_data_path: "data/train_data.jsonl"  # Efficiency scores (1-10)
+
 loss:
   alpha: 1.0  # Efficiency loss weight
   efficiency_num_classes: 10
@@ -98,7 +110,8 @@ python verify_code.py
 
 | File | Purpose |
 |------|---------|
-| `multi_task_training.py` | Finetune with conditional loss |
+| `multi_task_training.py` | Finetune with conditional loss (toxic + efficiency data) |
+| `evaluate_multi_task.py` | Evaluate both toxicity and efficiency predictions |
 | `multi_agent_pipeline.py` | Multi-agent prediction loop |
 | `predictor_agent.py` | Predictor agent implementation |
 | `verifier_agent.py` | Verifier agent implementation |

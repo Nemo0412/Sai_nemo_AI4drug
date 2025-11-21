@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=qwen30b_train
-#SBATCH --partition=a100-8
-#SBATCH --gres=gpu:a100:2
+#SBATCH --partition=msigpu
+#SBATCH --gres=gpu:h100:2
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=32
@@ -18,7 +18,7 @@ module load cuda/12.1.1
 
 # Print GPU info
 echo "========================================"
-echo "Qwen2-32B Training Job Started"
+echo "Qwen3-30B Training Job (40 steps, save every 5)"
 echo "========================================"
 echo "Job started at: $(date)"
 echo "Running on node: $(hostname)"
@@ -31,7 +31,7 @@ echo ""
 cd /users/7/li003385/workspace/Ai4drug/Sai_nemo_AI4drug/models/qwen_30b/scripts
 
 # Run training
-echo "Starting Qwen2-32B training..."
+echo "Starting Qwen3-30B training (40 steps, checkpoints at 5,10,15,20,25,30,35,40)..."
 python3 train_30b.py
 
 echo ""

@@ -1,6 +1,8 @@
 """
 Multi-Task Training with Conditional Loss
 Trains model to predict both toxicity and efficiency simultaneously
+- Toxic data: for toxicity prediction (0 or 1)
+- Efficiency data: for efficiency prediction (1-10 discrete values)
 """
 
 import json
@@ -23,33 +25,42 @@ import numpy as np
 class MultiTaskSMILESDataset:
     """Dataset class for multi-task SMILES data (toxicity + efficiency)"""
     
-    def __init__(self, jsonl_file, tokenizer, max_length=512):
+    def __init__(self, toxic_data_path, efficiency_data_path, tokenizer, max_length=512):
+        """
+        Initialize dataset with both toxic and efficiency data
+        
+        Args:
+            toxic_data_path: Path to toxic data JSONL file (contains toxicity labels 0/1)
+            efficiency_data_path: Path to efficiency data JSONL file (contains efficiency scores 1-10)
+            tokenizer: Tokenizer for encoding
+            max_length: Maximum sequence length
+        """
         self.tokenizer = tokenizer
         self.max_length = max_length
-        self.data = self.load_data(jsonl_file)
+        self.toxic_data = self.load_data(toxic_data_path) if toxic_data_path else []
+        self.efficiency_data = self.load_data(efficiency_data_path) if efficiency_data_path else []
     
     def load_data(self, jsonl_file):
         """Load data from JSONL file"""
+        if not os.path.exists(jsonl_file):
+            print(f"Warning: {jsonl_file} not found, skipping...")
+            return []
         data = []
         with open(jsonl_file, 'r', encoding='utf-8') as f:
             for line in f:
                 data.append(json.loads(line))
         return data
     
-    def extract_labels(self, assistant_message):
-        """
-        Extract toxicity and efficiency labels from assistant message
-        
-        Expected format: "This molecular structure {smiles} is {toxic/non-toxic}. Toxicity value: {0/1}."
-        For efficiency, we need to parse from the message or use a default
-        """
+    def extract_toxicity_label(self, assistant_message):
+        """Extract toxicity label (0 or 1) from assistant message - MUST be 0 or 1"""
         toxicity = 0
-        efficiency = None  # None if not found (will skip efficiency loss)
         
         # Extract toxicity (0 or 1)
         tox_match = re.search(r'Toxicity value:\s*(\d+)', assistant_message)
         if tox_match:
             toxicity = int(tox_match.group(1))
+            # Ensure it's 0 or 1 (discrete binary value)
+            toxicity = 1 if toxicity >= 1 else 0
         
         # Check for toxic/non-toxic keywords
         if 'non-toxic' in assistant_message.lower():
@@ -57,24 +68,29 @@ class MultiTaskSMILESDataset:
         elif 'toxic' in assistant_message.lower() and 'non-toxic' not in assistant_message.lower():
             toxicity = 1
         
-        # Extract efficiency if available
+        # Final check: ensure output is strictly 0 or 1
+        return 1 if toxicity >= 1 else 0
+    
+    def extract_efficiency_label(self, assistant_message):
+        """Extract efficiency label (1-10) from assistant message - MUST be discrete integer 1-10"""
+        efficiency = None
+        
+        # Extract efficiency/score
         eff_patterns = [
-            r'Efficiency[:\s]+(\d+)',
-            r'efficiency[:\s]+(\d+)',
-            r'Score[:\s]+(\d+)',  # Alternative format
-            r'score[:\s]+(\d+)',
+            r'[Ss]core[:\s]+(\d+)',
+            r'[Ee]fficiency[:\s]+(\d+)',
+            r'predicted score[:\s]+(\d+)',
+            r'is (\d+)',  # "is 5" format
         ]
         for pattern in eff_patterns:
             eff_match = re.search(pattern, assistant_message)
             if eff_match:
-                efficiency = int(eff_match.group(1))
-                # Validate range (1-10)
-                if 1 <= efficiency <= 10:
-                    break
-                else:
-                    efficiency = None
+                efficiency = int(eff_match.group(1))  # Convert to integer (discrete value)
+                # Clamp to valid range [1, 10] and ensure it's an integer
+                efficiency = max(1, min(10, efficiency))
+                return efficiency
         
-        return toxicity, efficiency
+        return efficiency
     
     def format_conversation(self, messages):
         """Format messages into a single string for training"""
@@ -91,17 +107,16 @@ class MultiTaskSMILESDataset:
         return formatted
     
     def preprocess_data(self):
-        """Preprocess data for training"""
+        """Preprocess data for training - combine toxic and efficiency data"""
         processed = []
-        for item in self.data:
-            # Format conversation
+        
+        # Process toxic data (for toxicity prediction)
+        print(f"Processing {len(self.toxic_data)} toxic data samples...")
+        for item in self.toxic_data:
             text = self.format_conversation(item['messages'])
+            assistant_msg = item['messages'][-1]['content']
+            toxicity = self.extract_toxicity_label(assistant_msg)
             
-            # Extract labels
-            assistant_msg = item['messages'][-1]['content']  # Last message is assistant
-            toxicity, efficiency = self.extract_labels(assistant_msg)
-            
-            # Tokenize
             encoded = self.tokenizer(
                 text,
                 max_length=self.max_length,
@@ -109,15 +124,38 @@ class MultiTaskSMILESDataset:
                 padding='max_length',
                 return_tensors=None
             )
-            
-            # Set labels for language modeling (standard causal LM)
             encoded['labels'] = encoded['input_ids'].copy()
-            
-            # Add multi-task labels
             encoded['toxicity_label'] = toxicity
-            encoded['efficiency_label'] = efficiency
-            
+            encoded['efficiency_label'] = None  # No efficiency label for toxic-only data
+            encoded['data_type'] = 'toxic'
             processed.append(encoded)
+        
+        # Process efficiency data (for efficiency prediction)
+        print(f"Processing {len(self.efficiency_data)} efficiency data samples...")
+        for item in self.efficiency_data:
+            text = self.format_conversation(item['messages'])
+            assistant_msg = item['messages'][-1]['content']
+            efficiency = self.extract_efficiency_label(assistant_msg)
+            
+            if efficiency is None:
+                continue  # Skip if efficiency label not found
+            
+            encoded = self.tokenizer(
+                text,
+                max_length=self.max_length,
+                truncation=True,
+                padding='max_length',
+                return_tensors=None
+            )
+            encoded['labels'] = encoded['input_ids'].copy()
+            encoded['toxicity_label'] = 0  # Assume non-toxic for efficiency data (will be masked in loss)
+            encoded['efficiency_label'] = efficiency
+            encoded['data_type'] = 'efficiency'
+            processed.append(encoded)
+        
+        print(f"Total processed samples: {len(processed)}")
+        print(f"  - Toxic samples: {len(self.toxic_data)}")
+        print(f"  - Efficiency samples: {len([p for p in processed if p['data_type'] == 'efficiency'])}")
         
         return Dataset.from_list(processed)
 
@@ -134,8 +172,10 @@ class MultiTaskTrainer(Trainer):
     def compute_loss(self, model, inputs, return_outputs=False):
         """
         Compute Conditional Multi-Task Loss:
-        1. Toxicity loss: binary_cross_entropy_with_logits
+        1. Toxicity loss: binary_cross_entropy_with_logits (all samples)
+           - Output: discrete binary value (0 or 1 only)
         2. Efficiency loss: cross_entropy (only for non-toxic samples)
+           - Output: discrete integer value (1-10 only)
         3. Total loss: loss_tox + alpha * loss_eff
         """
         # Extract labels
@@ -158,55 +198,69 @@ class MultiTaskTrainer(Trainer):
         )
         
         # Get hidden states for the last non-padding token
-        # Find the last non-padding token for each sequence
         attention_mask = inputs.get('attention_mask', None)
         if attention_mask is not None:
-            # Get indices of last non-padding tokens
-            seq_lengths = attention_mask.sum(dim=1) - 1  # -1 because of 0-indexing
+            seq_lengths = attention_mask.sum(dim=1) - 1
             batch_size = hidden_states.size(0)
             last_token_hidden = hidden_states[torch.arange(batch_size), seq_lengths]
         else:
-            # Fallback: use last token
             last_token_hidden = hidden_states[:, -1, :]
         
         # Project hidden states to classification logits
-        # For toxicity: binary classification (single output)
         hidden_dim = last_token_hidden.size(-1)
+        batch_size = last_token_hidden.size(0)
         
-        # Create simple linear projections (these could be added as model heads)
-        # For now, we'll use a simple mean pooling approach
-        # In production, you'd add proper classification heads to the model
+        # Toxicity logits: project to 1 dimension (binary classification: 0 or 1)
+        # Output MUST be discrete: 0 or 1 only (binary classification)
+        # Use mean pooling with learnable weight (simplified approach)
+        # For binary classification, output shape: [batch_size, 1]
+        toxicity_logits = last_token_hidden.mean(dim=-1, keepdim=True)  # Shape: [batch_size, 1]
         
-        # Toxicity logits: project to 1 dimension
-        toxicity_logits = last_token_hidden.mean(dim=-1, keepdim=True)
-        
-        # Efficiency logits: project to num_classes dimensions
-        # Use a simple projection: take first num_classes dimensions and apply linear transform
-        efficiency_projection = last_token_hidden[:, :self.efficiency_num_classes]
-        # Add a learnable bias-like term by using mean of remaining dimensions
-        if hidden_dim > self.efficiency_num_classes:
-            efficiency_bias = last_token_hidden[:, self.efficiency_num_classes:].mean(dim=-1, keepdim=True)
-            efficiency_logits = efficiency_projection + efficiency_bias
+        # Efficiency logits: project to num_classes dimensions (multi-class classification: 1-10)
+        # Output MUST be discrete: integer values 1-10 only (10-class classification)
+        # For 10-class classification, output shape: [batch_size, 10]
+        # Use first 10 dimensions of hidden state + mean of remaining as bias
+        if hidden_dim >= self.efficiency_num_classes:
+            efficiency_logits = last_token_hidden[:, :self.efficiency_num_classes]  # [batch_size, 10]
+            # Add bias from remaining dimensions
+            if hidden_dim > self.efficiency_num_classes:
+                bias = last_token_hidden[:, self.efficiency_num_classes:].mean(dim=-1, keepdim=True)
+                efficiency_logits = efficiency_logits + bias
         else:
-            efficiency_logits = efficiency_projection
+            # If hidden_dim < 10, pad with zeros
+            efficiency_logits = last_token_hidden
+            padding = torch.zeros(batch_size, self.efficiency_num_classes - hidden_dim, 
+                                device=last_token_hidden.device, dtype=last_token_hidden.dtype)
+            efficiency_logits = torch.cat([efficiency_logits, padding], dim=-1)
         
         # Convert labels to tensors
         toxicity_labels_tensor = torch.tensor(toxicity_labels, device=logits.device, dtype=torch.float32)
         
-        # 1. Toxicity loss: binary_cross_entropy_with_logits
+        # 1. Toxicity loss: binary_cross_entropy_with_logits (all samples)
+        # Ensure labels are strictly 0 or 1
+        toxicity_labels_tensor = toxicity_labels_tensor.clamp(0, 1)
         loss_tox = F.binary_cross_entropy_with_logits(
             toxicity_logits.squeeze(-1),
             toxicity_labels_tensor
         )
         
         # 2. Efficiency loss: cross_entropy (only for non-toxic samples)
-        # Check if we have efficiency labels
         has_efficiency = any(eff is not None for eff in efficiency_labels)
         
         if has_efficiency:
             # Filter out None values and create valid efficiency labels
+            # Ensure efficiency labels are discrete integers in range [1, 10]
+            valid_efficiency_labels = []
+            for eff in efficiency_labels:
+                if eff is not None:
+                    # Clamp to valid range [1, 10] and ensure integer
+                    eff_int = int(max(1, min(10, eff)))
+                    valid_efficiency_labels.append(eff_int)
+                else:
+                    valid_efficiency_labels.append(5)  # Default to 5 if None
+            
             efficiency_labels_tensor = torch.tensor(
-                [eff if eff is not None else 5 for eff in efficiency_labels],  # Default to 5 if None
+                valid_efficiency_labels,
                 device=logits.device,
                 dtype=torch.long
             )
@@ -217,11 +271,13 @@ class MultiTaskTrainer(Trainer):
                 device=logits.device,
                 dtype=torch.float32
             )
+            # Only compute efficiency loss for non-toxic samples (toxicity == 0)
             mask = ((toxicity_labels_tensor == 0) * valid_eff_mask).float()
             
             # Calculate cross entropy for all samples
-            # Convert efficiency labels from 1-10 to 0-9 for cross_entropy
-            efficiency_labels_0_indexed = (efficiency_labels_tensor - 1).clamp(0, self.efficiency_num_classes - 1)
+            # Convert efficiency labels from 1-10 to 0-9 for cross_entropy (discrete classes)
+            # Ensure labels are in valid range [0, 9] for 10-class classification
+            efficiency_labels_0_indexed = (efficiency_labels_tensor - 1).clamp(0, self.efficiency_num_classes - 1).long()
             ce_all = F.cross_entropy(
                 efficiency_logits,
                 efficiency_labels_0_indexed,
@@ -245,7 +301,7 @@ class MultiTaskTrainer(Trainer):
                 'loss': total_loss.item(),
                 'lm_loss': lm_loss.item(),
                 'toxicity_loss': loss_tox.item(),
-                'efficiency_loss': loss_eff.item(),
+                'efficiency_loss': loss_eff.item() if isinstance(loss_eff, torch.Tensor) else loss_eff,
             })
         
         return (total_loss, outputs) if return_outputs else total_loss
@@ -266,7 +322,7 @@ def setup_lora_config(config):
 
 def train_multi_task_model(config_path="training_config.yaml"):
     """
-    Train model with Conditional Multi-Task Loss
+    Train model with Conditional Multi-Task Loss using both toxic and efficiency data
     
     Args:
         config_path: Path to training configuration file
@@ -315,15 +371,22 @@ def train_multi_task_model(config_path="training_config.yaml"):
     model = get_peft_model(model, lora_config)
     model.print_trainable_parameters()
     
-    # Prepare dataset
-    print(f"\nLoading training data: {config['data']['train_data_path']}")
+    # Prepare dataset - load both toxic and efficiency data
+    toxic_train_path = config['data'].get('toxic_train_data_path')
+    efficiency_train_path = config['data'].get('efficiency_train_data_path')
+    
+    print(f"\nLoading training data:")
+    print(f"  Toxic data: {toxic_train_path}")
+    print(f"  Efficiency data: {efficiency_train_path}")
+    
     dataset_loader = MultiTaskSMILESDataset(
-        config['data']['train_data_path'],
-        tokenizer,
-        config['data']['max_length']
+        toxic_data_path=toxic_train_path,
+        efficiency_data_path=efficiency_train_path,
+        tokenizer=tokenizer,
+        max_length=config['data']['max_length']
     )
     train_dataset = dataset_loader.preprocess_data()
-    print(f"Training samples: {len(train_dataset)}")
+    print(f"Total training samples: {len(train_dataset)}")
     
     # Training arguments
     training_args = TrainingArguments(
@@ -358,8 +421,8 @@ def train_multi_task_model(config_path="training_config.yaml"):
     # Start training
     print("\nStarting training...")
     print(f"Loss configuration:")
-    print(f"  - Toxicity loss: {config['loss']['toxicity_loss_type']}")
-    print(f"  - Efficiency loss: {config['loss']['efficiency_loss_type']} (alpha={config['loss']['alpha']})")
+    print(f"  - Toxicity loss: {config['loss']['toxicity_loss_type']} (all samples)")
+    print(f"  - Efficiency loss: {config['loss']['efficiency_loss_type']} (only non-toxic samples, alpha={config['loss']['alpha']})")
     print(f"  - Efficiency classes: {config['loss']['efficiency_num_classes']}")
     print()
     
@@ -376,4 +439,3 @@ def train_multi_task_model(config_path="training_config.yaml"):
 
 if __name__ == "__main__":
     train_multi_task_model("training_config.yaml")
-

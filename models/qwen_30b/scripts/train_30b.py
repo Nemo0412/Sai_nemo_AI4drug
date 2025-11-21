@@ -141,20 +141,21 @@ def train_model(
     train_dataset = dataset_loader.preprocess_data()
     print(f"Training samples: {len(train_dataset)}")
     
-    # Training arguments - optimized for 30B model
+    # Training arguments - optimized for 30B model (40 steps, save every 5 steps)
     training_args = TrainingArguments(
         output_dir=output_dir,
-        num_train_epochs=num_epochs,
+        max_steps=40,  # Train for exactly 40 steps
         per_device_train_batch_size=batch_size,
-        gradient_accumulation_steps=32,  # Larger for 30B
+        gradient_accumulation_steps=5,  # 40 steps with 200 samples
         learning_rate=learning_rate,
         fp16=False,
         bf16=True,
-        save_strategy="epoch",
+        save_strategy="steps",  # Save by steps
+        save_steps=5,  # Save checkpoint every 5 steps
         logging_steps=5,
         warmup_steps=20,
         optim="paged_adamw_8bit",
-        save_total_limit=2,
+        save_total_limit=10,  # Keep all checkpoints (8 checkpoints: steps 5,10,15,20,25,30,35,40)
         report_to="none",
         gradient_checkpointing=True,
         max_grad_norm=0.3,
@@ -186,7 +187,7 @@ if __name__ == "__main__":
     config = {
         "model_name": "Qwen/Qwen3-30B-A3B-Instruct-2507",
         "train_data_path": "../../../data/train_data.jsonl",
-        "output_dir": "../checkpoints/qwen_30b_lora_finetuned",
+        "output_dir": "../checkpoints/qwen_30b_lora_40steps",  # New directory for 40-step training
         "num_epochs": 3,
         "batch_size": 1,
         "learning_rate": 1e-4,

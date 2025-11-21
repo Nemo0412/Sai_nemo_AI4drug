@@ -18,7 +18,7 @@ module load cuda/12.1.1
 
 # Print GPU info
 echo "========================================"
-echo "Qwen2-7B Training Job Started"
+echo "Qwen2-7B Training Job (40 steps, save every 5)"
 echo "========================================"
 echo "Job started at: $(date)"
 echo "Running on node: $(hostname)"
@@ -31,7 +31,7 @@ echo ""
 cd /users/7/li003385/workspace/Ai4drug/Sai_nemo_AI4drug/models/qwen_7b/scripts
 
 # Run training
-echo "Starting Qwen2-7B training..."
+echo "Starting Qwen2-7B training (40 steps, checkpoints at 5,10,15,20,25,30,35,40)..."
 python3 train_7b.py
 
 echo ""

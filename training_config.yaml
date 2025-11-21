@@ -8,8 +8,12 @@ model:
 
 # Data settings
 data:
-  train_data_path: "data/toxic_data/toxicity_train_data.jsonl"
-  test_data_path: "data/toxic_data/toxicity_test_data.jsonl"
+  # Toxic data: for toxicity prediction (0 or 1)
+  toxic_train_data_path: "data/toxic_data/toxicity_train_data.jsonl"
+  toxic_test_data_path: "data/toxic_data/toxicity_test_data.jsonl"
+  # Efficiency data: for efficiency prediction (1-10 discrete values)
+  efficiency_train_data_path: "data/efficiency_train_data.jsonl"
+  efficiency_test_data_path: "data/efficiency_test_data.jsonl"
   max_length: 512
 
 # Training hyperparameters
@@ -32,11 +36,13 @@ loss:
   alpha: 1.0
   
   # Toxicity loss settings
+  # Output: discrete binary value (0 or 1 only)
   toxicity_loss_type: "binary_cross_entropy"  # binary_cross_entropy_with_logits
   
   # Efficiency loss settings
+  # Output: discrete integer value (1-10 only)
   efficiency_loss_type: "cross_entropy"  # cross_entropy (only for non-toxic samples)
-  efficiency_num_classes: 10  # 1-10 efficiency scores
+  efficiency_num_classes: 10  # 1-10 efficiency scores (discrete integers)
   efficiency_eps: 1e-6  # Small epsilon for numerical stability
 
 # LoRA settings
