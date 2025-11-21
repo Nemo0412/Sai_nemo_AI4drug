@@ -25,11 +25,11 @@ training:
   learning_rate: 2e-4
   warmup_steps: 20
   save_strategy: "steps"  # Save every N steps
-  save_steps: 5  # Save checkpoint every 5 steps
+  save_steps: 20  # Save checkpoint every 20 steps
   logging_steps: 5
   save_total_limit: 100  # Keep more checkpoints for evaluation
   eval_strategy: "steps"  # Evaluate every N steps
-  eval_steps: 5  # Evaluate every 5 steps (same as save_steps)
+  eval_steps: 20  # Evaluate every 20 steps (same as save_steps)
   per_device_eval_batch_size: 1  # Batch size for evaluation
   max_grad_norm: 0.3
   gradient_checkpointing: true

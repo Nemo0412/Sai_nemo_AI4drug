@@ -14,7 +14,8 @@ from transformers import (
     AutoTokenizer, 
     TrainingArguments, 
     Trainer,
-    TrainerCallback
+    TrainerCallback,
+    DataCollatorForLanguageModeling
 )
 from peft import LoraConfig, get_peft_model, TaskType, prepare_model_for_kbit_training
 from datasets import Dataset
@@ -161,6 +162,49 @@ class MultiTaskSMILESDataset:
         return Dataset.from_list(processed)
 
 
+class MultiTaskDataCollator:
+    """Custom data collator that preserves toxicity_label and efficiency_label"""
+    
+    def __init__(self, tokenizer, padding=True):
+        self.tokenizer = tokenizer
+        self.padding = padding
+        self.collator = DataCollatorForLanguageModeling(
+            tokenizer=self.tokenizer,
+            mlm=False,
+            pad_to_multiple_of=None
+        )
+    
+    def __call__(self, features):
+        # Separate standard fields from custom fields
+        # features is a list of dictionaries
+        standard_features = []
+        custom_fields = {
+            'toxicity_label': [],
+            'efficiency_label': [],
+            'data_type': []
+        }
+        
+        for f in features:
+            # Create a copy of the feature without custom fields
+            standard_feature = {}
+            for key, value in f.items():
+                if key in ['toxicity_label', 'efficiency_label', 'data_type']:
+                    custom_fields[key].append(value)
+                else:
+                    standard_feature[key] = value
+            standard_features.append(standard_feature)
+        
+        # Use default collator for standard fields (expects a list)
+        batch = self.collator(standard_features)
+        
+        # Add custom fields back as lists (will be converted to tensors in compute_loss)
+        for key, values in custom_fields.items():
+            if values:  # Only add if not empty
+                batch[key] = values
+        
+        return batch
+
+
 class CheckpointEvaluationCallback(TrainerCallback):
     """Callback to evaluate model after each checkpoint save"""
     
@@ -229,7 +273,7 @@ class MultiTaskTrainer(Trainer):
         
         return output
     
-    def compute_loss(self, model, inputs, return_outputs=False):
+    def compute_loss(self, model, inputs, return_outputs=False, num_items_in_batch=None):
         """
         Compute Conditional Multi-Task Loss:
         1. Toxicity loss: binary_cross_entropy_with_logits (all samples)
@@ -238,10 +282,22 @@ class MultiTaskTrainer(Trainer):
            - Output: discrete integer value (1-10 only)
         3. Total loss: loss_tox + alpha * loss_eff
         """
-        # Extract labels
-        labels = inputs.pop("labels")
-        toxicity_labels = inputs.pop("toxicity_label")
-        efficiency_labels = inputs.pop("efficiency_label")
+        # Extract labels - use get() to handle missing keys gracefully
+        labels = inputs.pop("labels", None)
+        toxicity_labels = inputs.get("toxicity_label", None)
+        efficiency_labels = inputs.get("efficiency_label", None)
+        
+        # Remove labels from inputs if they exist (to avoid passing to model)
+        if "toxicity_label" in inputs:
+            inputs.pop("toxicity_label")
+        if "efficiency_label" in inputs:
+            inputs.pop("efficiency_label")
+        
+        # Convert to tensors if they're not already
+        if toxicity_labels is not None and not isinstance(toxicity_labels, torch.Tensor):
+            toxicity_labels = torch.tensor(toxicity_labels, dtype=torch.float32)
+        if efficiency_labels is not None and not isinstance(efficiency_labels, torch.Tensor):
+            efficiency_labels = torch.tensor(efficiency_labels, dtype=torch.long)
         
         # Forward pass with output_hidden_states to get hidden states
         outputs = model(**inputs, output_hidden_states=True)
@@ -293,8 +349,24 @@ class MultiTaskTrainer(Trainer):
                                 device=last_token_hidden.device, dtype=last_token_hidden.dtype)
             efficiency_logits = torch.cat([efficiency_logits, padding], dim=-1)
         
-        # Convert labels to tensors
-        toxicity_labels_tensor = torch.tensor(toxicity_labels, device=logits.device, dtype=torch.float32)
+        # Convert labels to tensors - handle None values
+        if toxicity_labels is None:
+            # If no toxicity labels, create zeros (assume all non-toxic)
+            toxicity_labels_tensor = torch.zeros(batch_size, device=logits.device, dtype=torch.float32)
+        elif isinstance(toxicity_labels, (list, tuple)):
+            toxicity_labels_tensor = torch.tensor(toxicity_labels, device=logits.device, dtype=torch.float32)
+        else:
+            toxicity_labels_tensor = toxicity_labels.to(device=logits.device, dtype=torch.float32)
+        
+        # Ensure batch size matches
+        if toxicity_labels_tensor.dim() == 0:
+            toxicity_labels_tensor = toxicity_labels_tensor.unsqueeze(0)
+        if toxicity_labels_tensor.size(0) != batch_size:
+            # If single value, expand to batch size
+            if toxicity_labels_tensor.size(0) == 1:
+                toxicity_labels_tensor = toxicity_labels_tensor.expand(batch_size)
+            else:
+                raise ValueError(f"Toxicity labels batch size mismatch: {toxicity_labels_tensor.size(0)} vs {batch_size}")
         
         # 1. Toxicity loss: binary_cross_entropy_with_logits (all samples)
         # Ensure labels are strictly 0 or 1
@@ -305,7 +377,12 @@ class MultiTaskTrainer(Trainer):
         )
         
         # 2. Efficiency loss: cross_entropy (only for non-toxic samples)
-        has_efficiency = any(eff is not None for eff in efficiency_labels)
+        if efficiency_labels is None:
+            has_efficiency = False
+        elif isinstance(efficiency_labels, (list, tuple)):
+            has_efficiency = any(eff is not None for eff in efficiency_labels)
+        else:
+            has_efficiency = True
         
         if has_efficiency:
             # Filter out None values and create valid efficiency labels
@@ -470,7 +547,7 @@ def train_multi_task_model(config_path="training_config.yaml"):
         num_train_epochs=config['training']['num_epochs'],
         per_device_train_batch_size=config['training']['per_device_train_batch_size'],
         gradient_accumulation_steps=config['training']['gradient_accumulation_steps'],
-        learning_rate=config['training']['learning_rate'],
+        learning_rate=float(config['training']['learning_rate']),
         fp16=config['optimization']['fp16'],
         bf16=config['optimization']['bf16'],
         save_strategy=config['training'].get('save_strategy', 'epoch'),
@@ -495,6 +572,9 @@ def train_multi_task_model(config_path="training_config.yaml"):
         output_dir=config['model']['output_dir']
     )
     
+    # Initialize custom data collator
+    data_collator = MultiTaskDataCollator(tokenizer=tokenizer)
+    
     # Initialize custom trainer
     trainer = MultiTaskTrainer(
         alpha=config['loss']['alpha'],
@@ -504,6 +584,7 @@ def train_multi_task_model(config_path="training_config.yaml"):
         args=training_args,
         train_dataset=train_dataset,
         eval_dataset=eval_dataset if len(eval_dataset) > 0 else None,
+        data_collator=data_collator,
         tokenizer=tokenizer,
         callbacks=[eval_callback],
     )
