@@ -13,7 +13,8 @@ from transformers import (
     AutoModelForCausalLM, 
     AutoTokenizer, 
     TrainingArguments, 
-    Trainer
+    Trainer,
+    TrainerCallback
 )
 from peft import LoraConfig, get_peft_model, TaskType, prepare_model_for_kbit_training
 from datasets import Dataset
@@ -160,6 +161,28 @@ class MultiTaskSMILESDataset:
         return Dataset.from_list(processed)
 
 
+class CheckpointEvaluationCallback(TrainerCallback):
+    """Callback to evaluate model after each checkpoint save"""
+    
+    def __init__(self, eval_dataset, tokenizer, output_dir):
+        self.eval_dataset = eval_dataset
+        self.tokenizer = tokenizer
+        self.output_dir = output_dir
+        self.results = []
+    
+    def on_save(self, args, state, control, model=None, **kwargs):
+        """Called after each checkpoint save"""
+        if state.global_step % args.save_steps == 0:
+            print(f"\n{'='*80}")
+            print(f"Evaluating checkpoint at step {state.global_step}")
+            print(f"{'='*80}")
+            
+            # Evaluate checkpoint using evaluate_checkpoints.py
+            checkpoint_path = os.path.join(args.output_dir, f"checkpoint-{state.global_step}")
+            print(f"Checkpoint saved at: {checkpoint_path}")
+            print(f"Run 'python evaluate_checkpoints.py' after training to evaluate all checkpoints")
+
+
 class MultiTaskTrainer(Trainer):
     """Custom Trainer with Conditional Multi-Task Loss"""
     
@@ -168,6 +191,18 @@ class MultiTaskTrainer(Trainer):
         self.alpha = alpha
         self.efficiency_num_classes = efficiency_num_classes
         self.efficiency_eps = efficiency_eps
+        self.accuracy_history = []  # Store accuracy for each checkpoint
+    
+    def compute_metrics(self, eval_pred):
+        """
+        Compute metrics for evaluation
+        Returns accuracy for both toxicity and efficiency predictions
+        """
+        predictions, labels = eval_pred
+        
+        # For now, return empty dict as we'll compute accuracy separately
+        # The actual accuracy will be computed during evaluation using model predictions
+        return {}
     
     def compute_loss(self, model, inputs, return_outputs=False):
         """
@@ -374,19 +409,35 @@ def train_multi_task_model(config_path="training_config.yaml"):
     # Prepare dataset - load both toxic and efficiency data
     toxic_train_path = config['data'].get('toxic_train_data_path')
     efficiency_train_path = config['data'].get('efficiency_train_data_path')
+    toxic_test_path = config['data'].get('toxic_test_data_path')
+    efficiency_test_path = config['data'].get('efficiency_test_data_path')
     
     print(f"\nLoading training data:")
     print(f"  Toxic data: {toxic_train_path}")
     print(f"  Efficiency data: {efficiency_train_path}")
     
-    dataset_loader = MultiTaskSMILESDataset(
+    train_dataset_loader = MultiTaskSMILESDataset(
         toxic_data_path=toxic_train_path,
         efficiency_data_path=efficiency_train_path,
         tokenizer=tokenizer,
         max_length=config['data']['max_length']
     )
-    train_dataset = dataset_loader.preprocess_data()
+    train_dataset = train_dataset_loader.preprocess_data()
     print(f"Total training samples: {len(train_dataset)}")
+    
+    # Prepare evaluation dataset
+    print(f"\nLoading evaluation data:")
+    print(f"  Toxic test data: {toxic_test_path}")
+    print(f"  Efficiency test data: {efficiency_test_path}")
+    
+    eval_dataset_loader = MultiTaskSMILESDataset(
+        toxic_data_path=toxic_test_path,
+        efficiency_data_path=efficiency_test_path,
+        tokenizer=tokenizer,
+        max_length=config['data']['max_length']
+    )
+    eval_dataset = eval_dataset_loader.preprocess_data()
+    print(f"Total evaluation samples: {len(eval_dataset)}")
     
     # Training arguments
     training_args = TrainingArguments(
@@ -397,14 +448,26 @@ def train_multi_task_model(config_path="training_config.yaml"):
         learning_rate=config['training']['learning_rate'],
         fp16=config['optimization']['fp16'],
         bf16=config['optimization']['bf16'],
-        save_strategy=config['training']['save_strategy'],
+        save_strategy=config['training'].get('save_strategy', 'epoch'),
+        save_steps=config['training'].get('save_steps', None),
         logging_steps=config['training']['logging_steps'],
         warmup_steps=config['training']['warmup_steps'],
         optim=config['optimization']['optim'],
-        save_total_limit=config['training']['save_total_limit'],
+        save_total_limit=config['training'].get('save_total_limit', 2),
+        eval_strategy=config['training'].get('eval_strategy', 'no'),
+        eval_steps=config['training'].get('eval_steps', None),
+        per_device_eval_batch_size=config['training'].get('per_device_eval_batch_size', 1),
         report_to="none",
         gradient_checkpointing=config['training']['gradient_checkpointing'],
         max_grad_norm=config['training']['max_grad_norm'],
+        load_best_model_at_end=False,  # Don't load best model, we'll evaluate all checkpoints
+    )
+    
+    # Initialize callback for checkpoint evaluation
+    eval_callback = CheckpointEvaluationCallback(
+        eval_dataset=eval_dataset if len(eval_dataset) > 0 else None,
+        tokenizer=tokenizer,
+        output_dir=config['model']['output_dir']
     )
     
     # Initialize custom trainer
@@ -415,7 +478,9 @@ def train_multi_task_model(config_path="training_config.yaml"):
         model=model,
         args=training_args,
         train_dataset=train_dataset,
+        eval_dataset=eval_dataset if len(eval_dataset) > 0 else None,
         tokenizer=tokenizer,
+        callbacks=[eval_callback],
     )
     
     # Start training
@@ -424,16 +489,22 @@ def train_multi_task_model(config_path="training_config.yaml"):
     print(f"  - Toxicity loss: {config['loss']['toxicity_loss_type']} (all samples)")
     print(f"  - Efficiency loss: {config['loss']['efficiency_loss_type']} (only non-toxic samples, alpha={config['loss']['alpha']})")
     print(f"  - Efficiency classes: {config['loss']['efficiency_num_classes']}")
+    print(f"\nTraining settings:")
+    print(f"  - Save every {config['training'].get('save_steps', 'N/A')} steps")
+    print(f"  - Evaluate every {config['training'].get('eval_steps', 'N/A')} steps")
     print()
     
     trainer.train()
     
-    # Save model
-    print(f"\nSaving model to: {config['model']['output_dir']}")
+    # Save final model
+    print(f"\nSaving final model to: {config['model']['output_dir']}")
     model.save_pretrained(config['model']['output_dir'])
     tokenizer.save_pretrained(config['model']['output_dir'])
     
     print("\nTraining completed!")
+    print("="*80)
+    print("\nTo evaluate all checkpoints, run:")
+    print(f"  python evaluate_checkpoints.py --config {config_path}")
     print("="*80)
 
 
