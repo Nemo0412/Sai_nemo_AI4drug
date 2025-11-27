@@ -237,6 +237,15 @@ class MultiTaskTrainer(Trainer):
         self.efficiency_eps = efficiency_eps
         self.accuracy_history = []  # Store accuracy for each checkpoint
     
+    def _remove_unused_columns(self, dataset, description=None):
+        """
+        Override to prevent removal of our custom label columns.
+        Trainer by default removes columns not in model's forward signature,
+        but we need to keep toxicity_label and efficiency_label.
+        """
+        # Don't remove any columns - we need all of them including custom labels
+        return dataset
+    
     def compute_metrics(self, eval_pred):
         """
         Compute metrics for evaluation based on classification heads
@@ -282,22 +291,26 @@ class MultiTaskTrainer(Trainer):
            - Output: discrete integer value (1-10 only)
         3. Total loss: loss_tox + alpha * loss_eff
         """
-        # Extract labels - use get() to handle missing keys gracefully
+        # DEBUG: Print what's in inputs BEFORE extracting
+        if hasattr(self.state, 'global_step') and self.state.global_step % 5 == 0:
+            print(f"\n[DEBUG] Step {self.state.global_step} - BEFORE extraction:")
+            print(f"  Keys in inputs: {list(inputs.keys())}")
+            print(f"  'toxicity_label' in inputs: {'toxicity_label' in inputs}")
+            print(f"  'efficiency_label' in inputs: {'efficiency_label' in inputs}")
+        
+        # Extract labels - keep as lists/tuples for later processing
         labels = inputs.pop("labels", None)
-        toxicity_labels = inputs.get("toxicity_label", None)
-        efficiency_labels = inputs.get("efficiency_label", None)
+        toxicity_labels = inputs.pop("toxicity_label", None)  # Use pop() instead of get()
+        efficiency_labels = inputs.pop("efficiency_label", None)  # Use pop() instead of get()
         
-        # Remove labels from inputs if they exist (to avoid passing to model)
-        if "toxicity_label" in inputs:
-            inputs.pop("toxicity_label")
-        if "efficiency_label" in inputs:
-            inputs.pop("efficiency_label")
+        # NOTE: Do NOT convert to tensors here! Keep as lists/tuples.
+        # Conversion happens later with proper device placement (lines 353-359 and 390-403)
         
-        # Convert to tensors if they're not already
-        if toxicity_labels is not None and not isinstance(toxicity_labels, torch.Tensor):
-            toxicity_labels = torch.tensor(toxicity_labels, dtype=torch.float32)
-        if efficiency_labels is not None and not isinstance(efficiency_labels, torch.Tensor):
-            efficiency_labels = torch.tensor(efficiency_labels, dtype=torch.long)
+        # DEBUG: Print labels AFTER extraction
+        if hasattr(self.state, 'global_step') and self.state.global_step % 5 == 0:
+            print(f"  After extraction:")
+            print(f"    toxicity_labels: {toxicity_labels}")
+            print(f"    efficiency_labels: {efficiency_labels}")
         
         # Forward pass with output_hidden_states to get hidden states
         outputs = model(**inputs, output_hidden_states=True)
