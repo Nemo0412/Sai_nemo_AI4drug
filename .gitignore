@@ -1,0 +1,45 @@
+# Checkpoints - 不上传模型文件
+checkpoints/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual environment
+venv/
+env/
+ENV/
+
+# Logs
+*.log
+
+# Model files
+*.bin
+*.safetensors
+*.pt
+*.pth
+*.ckpt
+
+# Data files (如果不想上传大文件)
+# data/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
